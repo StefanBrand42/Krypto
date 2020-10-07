@@ -1,6 +1,7 @@
 package persistence;
 
 import configuration.Configuration;
+import networkCampany.ParticipantTyp;
 
 import java.sql.*;
 import java.util.ArrayList;

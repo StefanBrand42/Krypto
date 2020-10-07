@@ -3,7 +3,7 @@ package instructionParser.parser;
 import gui.GUI;
 import instructionParser.ParserInstruction;
 import persistence.HSQLDB;
-import persistence.ParticipantTyp;
+import networkCampany.ParticipantTyp;
 
 public class RegisterParticipant extends ParserInstruction {
 
