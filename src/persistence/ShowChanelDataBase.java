@@ -1,3 +1,4 @@
+/*
 package persistence;
 
 public class ShowChanelDataBase {
@@ -25,3 +26,4 @@ public class ShowChanelDataBase {
         return nameParticipant02;
     }
 }
+*/

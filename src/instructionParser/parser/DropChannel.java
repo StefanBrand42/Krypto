@@ -2,7 +2,9 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
+import networkCampany.CompanyNetControlCenter;
 import persistence.HSQLDB;
+import persistence.HSQLTableChannel;
 
 public class DropChannel extends ParserInstruction {
 
@@ -14,8 +16,10 @@ public class DropChannel extends ParserInstruction {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("drop channel (.+)") && commandLineArray.length == 3){
             gui.writeTextAreaGui("Instruction drop channel");
-            Boolean succes = HSQLDB.instance.dropOneChanel(commandLineArray[2]);
-            if (succes){
+            String channelName = commandLineArray[2];
+            Boolean succesDB = HSQLTableChannel.instance.dropOneChanel(channelName);
+            Boolean succesComNet = CompanyNetControlCenter.instance.delateChannel(channelName);
+            if (succesComNet || succesDB){
                 gui.writeTextAreaGui("channel "+ commandLineArray[2]+ " deleted");
             }else {
                 gui.writeTextAreaGui("unkown channel " +commandLineArray[2]);

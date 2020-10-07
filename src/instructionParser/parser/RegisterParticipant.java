@@ -2,8 +2,10 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import persistence.HSQLDB;
+import networkCampany.CompanyNetControlCenter;
 import networkCampany.ParticipantTyp;
+import persistence.HSQLTableParticipants;
+import persistence.HSQLTablePostboxs;
 
 public class RegisterParticipant extends ParserInstruction {
 
@@ -18,6 +20,7 @@ public class RegisterParticipant extends ParserInstruction {
             if (partTyp.equals("normal") || partTyp.equals("intruder")){
                 gui.writeTextAreaGui("Instruction register participant");
                 String particName = commandLineArray[2];
+                /* DB
                 if (HSQLDB.instance.participantExist(particName)) {
                     gui.writeTextAreaGui("participant " + particName + " already exists, using existing postbox_[" + particName + "]");
                 }else {
@@ -25,6 +28,23 @@ public class RegisterParticipant extends ParserInstruction {
                     HSQLDB.instance.createTablePostbox(particName);
                     gui.writeTextAreaGui("participant "+particName +" with type "+partTyp +" registered and postbox_["+particName+"] created");
                 }
+
+                */
+
+                //CompanyControlCenter
+                if (CompanyNetControlCenter.instance.isParticipantExist(particName)) {
+                    gui.writeTextAreaGui("participant " + particName + " already exists, using existing postbox_[" + particName + "]");
+                }else {
+                    //DB
+                    int idParticipant = HSQLTableParticipants.instance.insertDataTableParticipants(particName, ParticipantTyp.valueOf(partTyp));
+                    HSQLTablePostboxs.instance.createTablePostbox(particName);
+                    // CompanyControl
+                    CompanyNetControlCenter.instance.createAndAddNewPatricipant(idParticipant,particName, ParticipantTyp.valueOf(partTyp));
+                    gui.writeTextAreaGui("participant "+particName +" with type "+partTyp +" registered and postbox_["+particName+"] created");
+                }
+
+
+
             }else {
                 gui.writeTextAreaGui("Instruction register participant, but wrong participantType. Please choose only normal/intruder");
             }

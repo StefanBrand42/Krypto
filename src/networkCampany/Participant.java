@@ -1,16 +1,25 @@
 package networkCampany;
 
-import com.google.common.eventbus.Subscribe;
-
-public class Participant extends Subscriber {
+public class Participant extends Subscriber implements IParticipant {
     private int id;
-    private String Name;
+    private String name;
     private ParticipantTyp participantTyp;
 
     public Participant(int id, String name, ParticipantTyp participantTyp) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.participantTyp = participantTyp;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ParticipantTyp getParticipantTyp() {
+        return participantTyp;
+    }
 }
