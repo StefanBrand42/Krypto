@@ -73,7 +73,8 @@ public class CryptoEngineRSA
             d = new BigInteger(stringD);
             e = new BigInteger(stringE);
             n = new BigInteger(stringN);
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             ex.printStackTrace();
         }

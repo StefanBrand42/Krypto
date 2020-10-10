@@ -1,5 +1,6 @@
 package instructionParser.parser;
 
+import configuration.Algorithms;
 import configuration.Configuration;
 import configuration.CryptoCreator;
 import gui.GUI;
@@ -12,58 +13,57 @@ public class EncryptMessage extends ParserInstruction {
     public EncryptMessage(ParserInstruction sucessor) {
         this.setSucessor(sucessor);
     }
+    CryptoCreator creator = new CryptoCreator();
 
     public void parse(String commandLine, GUI gui) {
-        CryptoCreator creator = new CryptoCreator();
 
+        // Zum Testen:  encrypt message "test" using rsa and keyfile rsa_key1.json
+        //              encrypt message "test" using shift and keyfile shift_key.json
         String[] commandLineArray = commandLine.split(" ");
-        if (commandLine.matches("encrypt message (.+) using (.+) and keyfile (.+)") && commandLineArray.length == 8){
+        if (commandLine.matches("encrypt message \"(.+)\" using (.+) and keyfile (.+)") && commandLineArray.length == 8){
             gui.writeTextAreaGui("Instruction encrypt message");
-/*// von Jones
-            if (!setAlgorithm(algorithm))
-            {
-                return null;
-            }
-            log("Creating encryption method at runtime from component");
-            createCryptoMethod("encrypt");
+            String message1 = commandLineArray[2]; // muss in "" sein
+            String message = message1.replace("\"","");
+            String algo = commandLineArray[4];
+            String key = commandLineArray[7];
 
-            log("Detected encryption algorithm '" + Configuration.instance.algorithm + "'");
-            String encryptedMessage = crypt(message, new File(Configuration.instance.keyfilesDirectory + keyfile));
-            if (!encryptedMessage.equals("")) {
-                log("Successfully encrypted message '" + message + "' to '" + encryptedMessage + "'");
-            }
-            return encryptedMessage;
-// von Jones*/
-/* von David
-            // Load component
-            //logger.log("Load cryptography variant for algorithm " + getParam("algorithm").toLowerCase());
-            creator.createCryptoMethod(Algorithms(getParam("algorithm")), CryptoVar.ENCRYPT);
-            Method method = creator.getCryptoVar();
-            // Build file
-            //logger.log("Get file object");
-            String fileName = getParam("keyfile");
-            if (!fileName.toLowerCase().endsWith(".json"))
-                fileName += ".json";
-            File file = new File(Configuration.instance.keyfileDirectory + fileName);
-            // Check if file exists
-            if (!file.exists()) {
-                String msg = "Error: File '" + getParam("keyfile") + "' not found.";
-            //    logger.log(msg);
-            //    logger.log("Canceled EncryptMessageCommand");
-                gui.writeTextAreaGui(msg);
-                return;
-            }
-
-            // Encrypt message
-            //logger.log("Executing encryption logic");
-            String encrypted = (String) method.invoke(creator.getPort(), getParam("message"), file);
-            //logger.log("Message '" + getParam("message") + "' encrypted. Result of encryption: " + encrypted);
-            gui.writeTextAreaGui(encrypted);
-            //logger.log("Executed EncryptMessageCommand");
-*/
+            gui.writeTextAreaGui(encrypt(message,algo,key));
         }else{
             super.parse(commandLine,gui);
         }
 
+    }
+
+    public String encrypt(String message, String algo, String key)
+    {
+        if (!chooseAlgorithm(algo))
+        {
+            return null;
+        }
+        //log("Creating encryption method at runtime from component");
+        creator.createCryptoMethod("encrypt");
+
+        //log("Detected encryption algorithm '" + algo + "'");
+        String encryptedMessage = creator.cryption(message, new File(Configuration.instance.keyfileDirectory + key));
+        if (!encryptedMessage.equals("")) {
+            //log("Successfully encrypted message '" + message + "' to '" + encryptedMessage + "'");
+        }
+        return encryptedMessage;
+    }
+
+
+    private boolean chooseAlgorithm(String algorithm)
+    {
+        switch (algorithm.toLowerCase()) {
+            case "rsa":
+                Configuration.instance.algorithms = Algorithms.RSA;
+                break;
+            case "shift":
+                Configuration.instance.algorithms = Algorithms.SHIFT;
+                break;
+            default:
+                return false;
+        }
+        return true;
     }
 }

@@ -1,5 +1,8 @@
 package configuration;
 
+import gui.GUI;
+import instructionParser.parser.EncryptMessage;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -11,6 +14,7 @@ import java.util.Map;
 public class CryptoCreator {
     private Object port;
     private Method cryptoVar;
+    public GUI gui;
 
     public Object getPort() {
         return port;
@@ -20,25 +24,21 @@ public class CryptoCreator {
         return cryptoVar;
     }
 
-    public void createCryptoMethod(Algorithms algorithm, CryptoVar cryptoVar) {
-        Object instance;
-        URL[] urls = null;
-        try {
-            urls = new URL[]{new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-            urls = new URL[]{new File(Configuration.instance.getAlgorithmPath(algorithm)).toURI().toURL()};
-            URLClassLoader urlClassLoader = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
-            Class clazz = Class.forName(algorithm.toString(), true, urlClassLoader);
 
-            instance = clazz.getMethod("getInstance").invoke(null);
-            port = clazz.getDeclaredField("port").get(instance);
-            this.cryptoVar = port.getClass().getMethod(cryptoVar.toString().toLowerCase(), String.class, File.class);
-        } catch (Exception e) {
+    public void createCryptoMethod(String methodType) { // cryptoVar: decrypt or encrypt
+        Object instance;
+
+        try {
+            URL[] urls = {new File(Configuration.instance.getAlgorithmPath(Configuration.instance.algorithms)).toURI().toURL()};
+            URLClassLoader urlClassLoader = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
+            Class aClass = Class.forName("CryptoEngine" + Configuration.instance.algorithms.toString(), true, urlClassLoader);
+
+            instance = aClass.getMethod("getInstance").invoke(null);
+            port = aClass.getDeclaredField("port").get(instance);
+
+            cryptoVar = port.getClass().getMethod(methodType, String.class,File.class);
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -48,27 +48,33 @@ public class CryptoCreator {
         URL[] urls = null;
         try {
             urls = new URL[]{new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            URLClassLoader urlClassLoader = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
-            Class clazz = Class.forName(algorithm.toString() + "Cracker", true, urlClassLoader);
+            URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
+            Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL);
 
-            instance = clazz.getMethod("getInstance").invoke(null);
-            port = clazz.getDeclaredField("port").get(instance);
+            instance = aClass.getMethod("getInstance").invoke(null);
+            port = aClass.getDeclaredField("port").get(instance);
             cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private Map<String, String> params = new HashMap();
-    public String getParam(String name) {
-        if (this.params.containsKey(name))
-            return this.params.get(name);
-        else
-            return null;
+
+    public String cryption(String message, File key)
+    {
+        try
+        {
+            //log("Starting decryption");
+            return (String) cryptoVar.invoke(port, message, key);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            //log("Error while decryption: " + e.getMessage());
+        }
+        return "";
     }
 }

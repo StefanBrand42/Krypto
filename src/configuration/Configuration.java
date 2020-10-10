@@ -12,6 +12,7 @@ public enum Configuration {
     // common
     public final String userDirectory = System.getProperty("user.dir");
     public final String fileSeparator = System.getProperty("file.separator");
+    public Algorithms algorithms = Algorithms.RSA;  // default Algorithm
 
     // database
     public final String dataDirectory = userDirectory + fileSeparator + "hsqldb" + fileSeparator;
@@ -50,7 +51,7 @@ public enum Configuration {
     public String getAlgorithmPath(Algorithms algorithm) {
         String path = componentDirectory;
         switch (algorithm) {
-            case Shift:
+            case SHIFT:
                 path += fileSeparator + algorithm.toString().toLowerCase() + fileSeparator + "jar" + fileSeparator + "Shift.jar";
                 break;
             case RSA:
@@ -65,7 +66,7 @@ public enum Configuration {
     public String getCrackerPath(Algorithms algorithm) {
         String path = componentDirectory;
         switch (algorithm) {
-            case Shift:
+            case SHIFT:
                 path += fileSeparator + algorithm.toString().toLowerCase() + "_cracker" + fileSeparator + "jar" + fileSeparator + "ShiftCracker.jar";
                 break;
             case RSA:
