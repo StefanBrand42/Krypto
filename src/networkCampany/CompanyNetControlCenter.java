@@ -28,6 +28,19 @@ public enum CompanyNetControlCenter {
         return channelHashMap.containsKey(channelName);
     }
 
+    public boolean isChannelExist(String nameParticipant01, String nameParticipant02){
+        for (IChannel channel: channelHashMap.values()) {
+            if (channel.getParticipant01().getName().equals(nameParticipant01) && channel.getParticipant02().getName().equals(nameParticipant02)){
+                return  true;
+            }if (channel.getParticipant01().getName().equals(nameParticipant02) && channel.getParticipant02().getName().equals(nameParticipant01)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
     public  boolean isParticipantExist(String participantName){
         for (IParticipant participant: participantHashMap.values()) {
             if (participant.getName().equals(participantName)){
@@ -37,8 +50,18 @@ public enum CompanyNetControlCenter {
         return  false;
     }
 
+
     public  IParticipant getParticipantById(int id){
         return participantHashMap.get(id);
+    }
+
+    public IParticipant getParticipantByName(String nameParticipant){
+        for (IParticipant participant: participantHashMap.values()) {
+            if (participant.getName().equals(nameParticipant)){
+                return participant;
+            }
+        }
+        return  null;
     }
 
     public boolean delateChannel(String channelName){
@@ -54,6 +77,12 @@ public enum CompanyNetControlCenter {
     public void createAndAddNewPatricipant(int idPar, String namePart, ParticipantTyp participantTyp){
         IParticipant paricipant = new Participant(idPar,namePart,participantTyp);
         participantHashMap.put(idPar,paricipant);
+    }
+
+    public void createAndAddNewChannel(String nameChannel, IParticipant participant01, IParticipant participant02){
+        IChannel channel = new Channel(nameChannel,participant01,participant02);
+        channelHashMap.put(channel.getName(),channel);
+
     }
 
 
