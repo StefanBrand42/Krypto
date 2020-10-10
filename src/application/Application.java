@@ -3,7 +3,7 @@ package application;
 import gui.GUI;
 
 
-import networkCampany.CompanyNetControlCenter;
+import networkCampany.*;
 import org.hsqldb.lib.HsqlArrayHeap;
 import persistence.*;
 
@@ -80,6 +80,13 @@ public class Application {
 
 
         // GUI.getOutputArea().appendText("Huhuhhhh");
+
+        // Test Eventbus
+        IParticipant test = new Participant(1,"testParti1", ParticipantTyp.normal);
+        IParticipant test2 = new Participant(1,"testParti2", ParticipantTyp.normal);
+        IChannel testCh = new Channel("Hallo",test,test2);
+        testCh.send("KryptoTest",test2);
+
 
 
         HSQLDB.instance.shutdown();

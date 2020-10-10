@@ -1,5 +1,7 @@
 package networkCampany;
 
+import com.google.common.eventbus.Subscribe;
+
 public class Participant extends Subscriber implements IParticipant {
     private int id;
     private String name;
@@ -21,5 +23,13 @@ public class Participant extends Subscriber implements IParticipant {
 
     public ParticipantTyp getParticipantTyp() {
         return participantTyp;
+    }
+
+
+    // Event Bud
+    @Subscribe
+    public void receive(EventMessageSend eventMessageSend){
+        System.out.println("---------------Message receive: Participant "+name);
+        System.out.println("Message:"+eventMessageSend.getMessageContent() );
     }
 }
