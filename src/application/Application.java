@@ -45,7 +45,10 @@ public class Application {
         HSQLTableChannel.instance.createTableChannel();
         HSQLTableMessages.instance.createTableMessages();
 
-
+        List<String> algoTypsInComponents= Configuration.instance.getAlgoTypsFromFileNames();
+        for (String algoTypString:algoTypsInComponents) {
+            HSQLTableAlgo.instance.insertDataTableAlgoithms(algoTypString);
+        }
 
         HSQLTableTypes.instance.insertDataTableTypes("normal");
         HSQLTableTypes.instance.insertDataTableTypes("intruder");

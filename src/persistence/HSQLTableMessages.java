@@ -50,15 +50,19 @@ public enum HSQLTableMessages {
         StringBuilder sqlStringBuilder04 = new StringBuilder();
         sqlStringBuilder04.append("ALTER TABLE messages ADD CONSTRAINT fkAlgorithm_id ");
         sqlStringBuilder04.append("FOREIGN KEY (algorithm_id) ");
-        sqlStringBuilder04.append("REFERENCES algorithmsTyp (id) ");
+        sqlStringBuilder04.append("REFERENCES algorithms (id) ");
         sqlStringBuilder04.append("ON DELETE CASCADE");
         System.out.println("sqlStringBuilder : " + sqlStringBuilder04.toString());
         HSQLDB.instance.update(sqlStringBuilder04.toString());
     }
 
-    public void insertDataTableMessages(int participant_from_id, int participant_to_id, String plain_message, int algorithm_id, String encrypted_message, String keyfile, int timestamp) {
+    public void insertDataTableMessages(String participant_from_Name, String participant_to_Name, String plain_message, int algorithm_id, String encrypted_message, String keyfile, int timestamp) {
+        int participant_from_id = HSQLTableParticipants.instance.selectParticipantID(participant_from_Name);
+        int participant_to_id = HSQLTableParticipants.instance.selectParticipantID(participant_to_Name);
+
         int nextID = HSQLDB.instance.getNextID("messages") + 1;
         StringBuilder sqlStringBuilder = new StringBuilder();
+
         sqlStringBuilder.append("INSERT INTO messages (").append("id ").append(",").append("participant_from_id").append(",").append("participant_to_id ").append(",").append("plain_message").append(",").append("algorithm_id").append(",").append("encrypted_message").append(",").append("keyfile").append(",").append("timestamp").append(")");
         sqlStringBuilder.append(" VALUES ");
         sqlStringBuilder.append("(").append(nextID).append(",").append(participant_from_id).append(",").append(participant_to_id).append(",").append("'").append(plain_message).append("'").append(",").append(algorithm_id).append(",").append("'").append(encrypted_message).append("'").append(",").append("'").append(keyfile).append("'").append(",").append(timestamp);
