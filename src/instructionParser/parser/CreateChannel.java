@@ -8,8 +8,8 @@ import networkCampany.ParticipantTyp;
 import persistence.HSQLTableChannel;
 
 public class CreateChannel extends ParserInstruction {
-    public CreateChannel(ParserInstruction sucessor) {
-        this.setSucessor(sucessor);
+    public CreateChannel(ParserInstruction successor) {
+        this.setSuccessor(successor);
     }
 
     public void parse(String commandLine, GUI gui) {

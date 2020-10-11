@@ -137,10 +137,10 @@ public enum Configuration {
         String path = componentDirectory;
         switch (algorithm) {
             case SHIFT:
-                path += fileSeparator + algorithm.toString().toLowerCase() + "_cracker" + fileSeparator + "jar" + fileSeparator + "ShiftCracker.jar";
+                path += fileSeparator + algorithm.toString().toLowerCase() + "_cracker" + fileSeparator + "jar" + fileSeparator + "shift_cracker.jar";
                 break;
             case RSA:
-                path += fileSeparator + algorithm.toString().toLowerCase() + "_cracker" + fileSeparator + "jar" + fileSeparator + "RSACracker.jar";
+                path += fileSeparator + algorithm.toString().toLowerCase() + "_cracker" + fileSeparator + "jar" + fileSeparator + "rsa_cracker.jar";
                 break;
             default:
                 path = "ERROR";

@@ -3,21 +3,21 @@ package instructionParser;
 import gui.GUI;
 
 public abstract class ParserInstruction {
-    private ParserInstruction sucessor;
+    private ParserInstruction successor;
     public void parse (String commandLine, GUI gui){
-        if (getSucessor()!= null){
-            getSucessor().parse(commandLine, gui);
+        if (getSuccessor()!= null){
+            getSuccessor().parse(commandLine, gui);
         }else{
             gui.writeTextAreaGui("unable to find the correct Instruction parser");
         }
     }
 
-    public ParserInstruction getSucessor() {
-        return sucessor;
+    public ParserInstruction getSuccessor() {
+        return successor;
     }
 
-    public void setSucessor(ParserInstruction sucessor) {
-        this.sucessor = sucessor;
+    public void setSuccessor(ParserInstruction successor) {
+        this.successor = successor;
     }
 
 }

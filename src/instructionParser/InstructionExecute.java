@@ -11,12 +11,12 @@ public class InstructionExecute implements  IInstructionExecute{
         ParserInstruction showAlgo = new ShowAlgo();
         ParserInstruction encryptMes = new EncryptMessage(showAlgo);
         ParserInstruction decryptMes = new DecryptMessage(encryptMes);
-        ParserInstruction crackEncrypMes = new CrackEncrptMessage(decryptMes);
+        ParserInstruction crackEncrypMes = new CrackEncryptedMessage(decryptMes);
         ParserInstruction registerPart = new RegisterParticipant(crackEncrypMes);
         ParserInstruction creatChan = new CreateChannel(registerPart);
         ParserInstruction showChan = new ShowChannel(creatChan);
         ParserInstruction dropChan = new DropChannel(showChan);
-        ParserInstruction instChan = new InstrudeChannel(dropChan);
+        ParserInstruction instChan = new IntrudeChannel(dropChan);
         ParserInstruction sendMes = new SendMessage(instChan);
 
         startParser = sendMes;

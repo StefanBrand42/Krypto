@@ -5,8 +5,8 @@ import instructionParser.ParserInstruction;
 
 public class SendMessage extends  ParserInstruction {
 
-    public SendMessage(ParserInstruction sucessor) {
-        this.setSucessor(sucessor);
+    public SendMessage(ParserInstruction successor) {
+        this.setSuccessor(successor);
     }
 
     public void parse(String commandLine, GUI gui) {

@@ -2,19 +2,15 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.Channel;
 import networkCampany.CompanyNetControlCenter;
 import networkCampany.IChannel;
-import persistence.HSQLDB;
-import persistence.HSQLTableChannel;
 
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class ShowChannel  extends ParserInstruction {
-    public ShowChannel(ParserInstruction sucessor) {
-        this.setSucessor(sucessor);
+    public ShowChannel(ParserInstruction successor) {
+        this.setSuccessor(successor);
     }
 
     public void parse(String commandLine, GUI gui) {

@@ -3,13 +3,12 @@ package instructionParser.parser;
 import gui.GUI;
 import instructionParser.ParserInstruction;
 import networkCampany.CompanyNetControlCenter;
-import persistence.HSQLDB;
 import persistence.HSQLTableChannel;
 
 public class DropChannel extends ParserInstruction {
 
-    public DropChannel(ParserInstruction sucessor) {
-        this.setSucessor(sucessor);
+    public DropChannel(ParserInstruction successor) {
+        this.setSuccessor(successor);
     }
 
     public void parse(String commandLine, GUI gui) {

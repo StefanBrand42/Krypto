@@ -9,8 +9,8 @@ import persistence.HSQLTablePostboxs;
 
 public class RegisterParticipant extends ParserInstruction {
 
-    public RegisterParticipant(ParserInstruction sucessor) {
-        this.setSucessor(sucessor);
+    public RegisterParticipant(ParserInstruction successor) {
+        this.setSuccessor(successor);
     }
 
     public void parse(String commandLine, GUI gui) {
