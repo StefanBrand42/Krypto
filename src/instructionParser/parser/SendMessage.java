@@ -7,6 +7,7 @@ import instructionParser.ParserInstruction;
 import networkCampany.CompanyNetControlCenter;
 import networkCampany.IChannel;
 import networkCampany.IParticipant;
+import persistence.HSQLTableMessages;
 
 public class SendMessage extends  ParserInstruction {
 
@@ -21,11 +22,13 @@ public class SendMessage extends  ParserInstruction {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("send message \"(.+)\" from (.+) to (.+) using (.+) and keyfile (.+)") && commandLineArray.length == 12){
             gui.writeTextAreaGui("Instruction send message");
-            String message = commandLineArray[2];
+            String message_ = commandLineArray[2];
+            String message = message_.replace("\"","");
             String participant01 = commandLineArray[4];
             String participant02 = commandLineArray[6];
             String algo = commandLineArray[8];
             String keyfileName = commandLineArray[11];
+
 
             boolean readyforSend = true  ;
             StringBuilder stringBuilder01 = new StringBuilder();
@@ -47,6 +50,8 @@ public class SendMessage extends  ParserInstruction {
                 IChannel channel = CompanyNetControlCenter.instance.getChannelByNamePartic01Part02(participant01,participant02);
                 String encrpytMassage = gui.getCryptoCreator().encryptMessage(message,algo,keyfileName);
                 IParticipant participantTarget = CompanyNetControlCenter.instance.getParticipantByName(participant02);
+                IParticipant participantFrom = CompanyNetControlCenter.instance.getParticipantByName(participant01);
+
                 // Send Message via EventBus
                 AlgorithmsTyp algorithmsTyp = gui.getCryptoCreator().getAlgoTypFromName(algo);
                 switch (algorithmsTyp){
@@ -54,6 +59,8 @@ public class SendMessage extends  ParserInstruction {
                        break;
                     case SHIFT:
                         channel.send(encrpytMassage,algorithmsTyp,participantTarget,keyfileName);
+                        HSQLTableMessages.instance.insertDataTableMessages(participantFrom.getId(),participantTarget.getId(),message,algo.toLowerCase(),encrpytMassage,keyfileName);
+
                         break;
                 }
 

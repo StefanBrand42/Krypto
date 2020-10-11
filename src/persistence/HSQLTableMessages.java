@@ -1,5 +1,7 @@
 package persistence;
 
+import java.time.Instant;
+
 public enum HSQLTableMessages {
     instance;
 
@@ -56,12 +58,12 @@ public enum HSQLTableMessages {
         HSQLDB.instance.update(sqlStringBuilder04.toString());
     }
 
-    public void insertDataTableMessages(String participant_from_Name, String participant_to_Name, String plain_message, int algorithm_id, String encrypted_message, String keyfile, int timestamp) {
-        int participant_from_id = HSQLTableParticipants.instance.selectParticipantID(participant_from_Name);
-        int participant_to_id = HSQLTableParticipants.instance.selectParticipantID(participant_to_Name);
-
+    public void insertDataTableMessages( int participant_from_id,int participant_to_id , String plain_message, String algorithm_Name, String encrypted_message, String keyfile) {
+        int timestamp = (int) Instant.now().getEpochSecond();
+        int algorithm_id = HSQLTableAlgo.instance.selectAlgoID(algorithm_Name);
         int nextID = HSQLDB.instance.getNextID("messages") + 1;
         StringBuilder sqlStringBuilder = new StringBuilder();
+
 
         sqlStringBuilder.append("INSERT INTO messages (").append("id ").append(",").append("participant_from_id").append(",").append("participant_to_id ").append(",").append("plain_message").append(",").append("algorithm_id").append(",").append("encrypted_message").append(",").append("keyfile").append(",").append("timestamp").append(")");
         sqlStringBuilder.append(" VALUES ");

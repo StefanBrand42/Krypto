@@ -54,10 +54,10 @@ public enum HSQLTableAlgo {
     }
 
 
-    public int selectParticipantID(String participantName){
+    public int selectAlgoID(String algoName){
         int id =0;
         try {
-            String sqlStatement = "SELECT id FROM participants WHERE name = '"+participantName +"'";
+            String sqlStatement = "SELECT id FROM algorithms WHERE name = '"+algoName +"'";
             Statement statement = HSQLDB.instance.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(sqlStatement);
 
