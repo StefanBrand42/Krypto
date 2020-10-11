@@ -1,5 +1,6 @@
 package application;
 
+import configuration.Configuration;
 import gui.GUI;
 
 
@@ -9,6 +10,7 @@ import persistence.*;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String... args) {
@@ -86,6 +88,12 @@ public class Application {
         IParticipant test2 = new Participant(1,"testParti2", ParticipantTyp.normal);
         IChannel testCh = new Channel("Hallo",test,test2);
         testCh.send("KryptoTest",test2);
+
+        // test
+        List<String> testKeyFilens = Configuration.instance.getAlgoTypsFromFileNames();
+        boolean asd = Configuration.instance.checkIfAlgoExist("rSA");
+        boolean asd22 = Configuration.instance.checkIfKeyFileNameExist("rsa_key1");
+
 
 
 

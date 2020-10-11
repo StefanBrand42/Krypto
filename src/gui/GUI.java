@@ -1,6 +1,8 @@
 package gui;
 
 
+import crypto.CryptoCreator;
+import crypto.ICryptoCreator;
 import instructionParser.IInstructionExecute;
 import instructionParser.InstructionExecute;
 import javafx.application.Application;
@@ -18,10 +20,12 @@ import javafx.stage.Stage;
 public class GUI extends Application {
 
     private  TextArea outputArea;
+    private ICryptoCreator cryptoCreator;
 
     public void start(Stage primaryStage) {
 
         IInstructionExecute iInstructionExecute = new InstructionExecute(this);
+        cryptoCreator = new CryptoCreator();
 
 
 
@@ -128,5 +132,7 @@ public class GUI extends Application {
         outputArea.appendText(text);
     }
 
-
+    public ICryptoCreator getCryptoCreator() {
+        return cryptoCreator;
+    }
 }

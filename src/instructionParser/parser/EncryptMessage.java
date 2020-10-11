@@ -1,12 +1,9 @@
 package instructionParser.parser;
 
-import configuration.Algorithms;
 import configuration.Configuration;
-import configuration.CryptoCreator;
+import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
-
-import java.io.File;
 
 public class EncryptMessage extends ParserInstruction {
 
@@ -27,13 +24,35 @@ public class EncryptMessage extends ParserInstruction {
             String algo = commandLineArray[4];
             String key = commandLineArray[7];
 
-            gui.writeTextAreaGui(encrypt(message,algo,key));
+            // Check if algo and KeyFile exist in Components
+            boolean readyforEncrypt = true  ;
+            StringBuilder stringBuilder01 = new StringBuilder();
+            if (!Configuration.instance.checkIfAlgoExist(algo)){
+                stringBuilder01.append("Your chosen algorithm dos not exit \n");
+                readyforEncrypt = false;
+            }
+
+            if (!Configuration.instance.checkIfKeyFileNameExist(key)){
+                stringBuilder01.append("Your chosen keyfilename dos not exit (please without .json) \n");
+
+                readyforEncrypt = false;
+            }
+
+            if (readyforEncrypt)
+            {
+                gui.writeTextAreaGui(gui.getCryptoCreator().encryptMessage(message,algo,key));
+            }else {
+                gui.writeTextAreaGui(stringBuilder01.toString());
+            }
+
+
         }else{
             super.parse(commandLine,gui);
         }
 
     }
 
+    /*
     public String encrypt(String message, String algo, String key)
     {
         if (!chooseAlgorithm(algo))
@@ -66,4 +85,6 @@ public class EncryptMessage extends ParserInstruction {
         }
         return true;
     }
+    */
+
 }

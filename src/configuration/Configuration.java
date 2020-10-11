@@ -1,5 +1,7 @@
 package configuration;
 
+import crypto.Algorithms;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,7 +34,7 @@ public enum Configuration {
 
     public List<String> getAlgorithmFileNames() {
         List<String> filenames = new ArrayList<>();
-        String path = Configuration.instance.componentDirectory;
+        String path = componentDirectory;
         try {
             Files.walk(Paths.get(path))
                     .filter(Files::isRegularFile)
@@ -47,6 +49,74 @@ public enum Configuration {
         }
         return filenames;
     }
+
+
+    public List<String> getAlgoTypsFromFileNames() {
+        List<String> list = getAlgorithmFileNames();
+        List<String> listAlgoTyp = new ArrayList<>();
+
+
+        for (String algo : list) {
+            // Without crackers
+            if (!algo.endsWith("cracker")) {
+                listAlgoTyp.add(algo);
+            }
+            //logger.log("found algo: "+algo);
+        }
+        return listAlgoTyp;
+    }
+
+
+    public boolean checkIfAlgoExist(String algoTyps){
+        List<String> list = getAlgoTypsFromFileNames();
+        for (String algo:list) {
+            if (algo.equalsIgnoreCase(algoTyps)){
+                return  true ;
+            }
+
+
+        }
+        return false;
+    }
+
+
+    public List<String> getKeyFileNames() {
+        List<String> filenames = new ArrayList<>();
+        String path = keyfileDirectory;
+
+        try {
+            Files.walk(Paths.get(path))
+                    .filter(Files::isRegularFile)
+                    .forEach((f)->{
+                        String file = f.toString();
+                        if( file.endsWith(".json")){
+                            String fName = f.getFileName().toString().toLowerCase();
+                            filenames.add(fName.substring(0,fName.length()-5));}
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filenames;
+    }
+
+
+    public boolean checkIfKeyFileNameExist(String keyFileName){
+        List<String> list = getKeyFileNames();
+        for (String key:list) {
+            if (key.equalsIgnoreCase(keyFileName)) {
+                return  true ;
+            }
+
+
+        }
+        return false;
+    }
+
+
+
+
+
+
 
     public String getAlgorithmPath(Algorithms algorithm) {
         String path = componentDirectory;

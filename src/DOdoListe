@@ -14,3 +14,18 @@ show Channel --> Stefan --> done
 drop Channel --> Stefan --> done
 intrude Channel -->
 send Messsage --> Stefan --> in pre
+
+
+Componteten
+genau gleich wie JonesGit??????? --> das fällt auch--> sollten da einigen aendern
+Encrpyt Loesung ist auch kopiert wurden????? -> genau gleiche Logik und Methoden
+
+
+
+encrypt message "test" using rsa and keyfile rsa_key1
+decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
+
+
+Stefan
+C:\Users\Stefan\Dropbox\00_Austausch\04_Semester\SoftwareEngineering\02_vorlesung\03_soa_komponenten\03_soa_komponenten_vorlesung\03_soa_komponenten\01_komponenten\02_implementierung\01_beispiele\01_beispiele
+
