@@ -1,7 +1,6 @@
 import java.text.DecimalFormat;
-import java.util.Scanner;
 
-public class ShiftCracker {
+public class SHIFTCracker {
     private static DecimalFormat decimalFormat = new DecimalFormat("#0.00000");
 
     public class Port implements IShiftCracker
@@ -12,10 +11,10 @@ public class ShiftCracker {
         }
     }
 
-    private static ShiftCracker instance = new ShiftCracker();
+    private static SHIFTCracker instance = new SHIFTCracker();
     public Port port;
-    private ShiftCracker() { port = new Port(); }
-    public static ShiftCracker getInstance() { return instance; }
+    private SHIFTCracker() { port = new Port(); }
+    public static SHIFTCracker getInstance() { return instance; }
 
     // rtwumjzx
     private String CrackMethod(String message) {

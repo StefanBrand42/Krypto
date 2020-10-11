@@ -142,7 +142,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         return "";
     }
 
-    private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht ShiftCracker
+    private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht SHIFTCracker
         Object instance;
         /*
         URL[] urls = null;
@@ -155,9 +155,9 @@ public class CryptoCreator  implements  ICryptoCreator{
         try {
             URL[] urls= {new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
             URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
-            String test = "ShiftCracker";
+            //String test = "SHIFTCracker";
             //Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL); // RSA Klassen-Namen müssen noch angepasst werden!
-            Class aClass = Class.forName(test, true, urlCL);
+            Class aClass = Class.forName(algorithm.toString()+"Cracker", true, urlCL);
             instance = aClass.getMethod("getInstance").invoke(null);
             port = aClass.getDeclaredField("port").get(instance);
             //cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
