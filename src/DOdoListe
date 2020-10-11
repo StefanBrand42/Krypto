@@ -23,12 +23,6 @@ Encrpyt Loesung ist auch kopiert wurden????? -> genau gleiche Logik und Methoden
 
 
 
-encrypt message "test" using rsa and keyfile rsa_key1
-decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
-
-encrypt message "test" using shift and keyfile shift_key
-decrypt message "yjxy" using shift and keyfile shift_key
-
 Stefan
 C:\Users\Stefan\Dropbox\00_Austausch\04_Semester\SoftwareEngineering\02_vorlesung\03_soa_komponenten\03_soa_komponenten_vorlesung\03_soa_komponenten\01_komponenten\02_implementierung\01_beispiele\01_beispiele
 
@@ -41,3 +35,13 @@ Componenten RSA En/De -->Beispiel 1 RSA --> Stefan
 Componenetn Shift End/DE --> Beispiel 1 Shift --> Stefan
 Crypto Creater Methode anpassen --> Optinal Wilhem
 
+
+Befehlsammlung
+
+encrypt message "test" using rsa and keyfile rsa_key1
+decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
+
+encrypt message "test" using shift and keyfile shift_key
+decrypt message "yjxy" using shift and keyfile shift_key
+
+send message "test" from branch_hkg to branch_wuh using shift and keyfile shift_key

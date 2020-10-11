@@ -1,5 +1,6 @@
 package networkCampany;
 
+import gui.GUI;
 import persistence.HSQLTableChannel;
 import persistence.HSQLTableParticipants;
 
@@ -12,6 +13,10 @@ public enum CompanyNetControlCenter {
 
     private Map<Integer, IParticipant> participantHashMap = new HashMap<>();
     private Map<String, IChannel> channelHashMap = new HashMap<>();
+    private GUI gui;
+
+
+
 
 
     public void addParicipantToMap (Participant participant){
@@ -117,5 +122,14 @@ public enum CompanyNetControlCenter {
 
     public Map<String, IChannel> getChannelHashMap() {
         return channelHashMap;
+    }
+
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public void setGui(GUI gui) {
+        this.gui = gui;
     }
 }

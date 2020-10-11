@@ -4,7 +4,5 @@
     <buildFile url="file://$PROJECT_DIR$/components/rsa/build.xml" />
     <buildFile url="file://$PROJECT_DIR$/components/rsa_cracker/build.xml" />
     <buildFile url="file://$PROJECT_DIR$/components/shift/build.xml" />
-    <buildFile url="file://$PROJECT_DIR$/components/shift_cracker/build.xml" />
-    <buildFile url="file://$PROJECT_DIR$/components/shift_cracker/build.xml" />
   </component>
 </project>

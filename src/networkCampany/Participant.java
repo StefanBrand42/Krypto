@@ -2,6 +2,9 @@ package networkCampany;
 
 import com.google.common.eventbus.Subscribe;
 import crypto.AlgorithmsTyp;
+import crypto.CryptoCreator;
+
+import java.awt.*;
 
 public class Participant extends Subscriber implements IParticipant {
     private int id;
@@ -30,14 +33,22 @@ public class Participant extends Subscriber implements IParticipant {
     // Event Bud
     @Subscribe
     public void receive(EventMessageSend eventMessageSend){
+        CryptoCreator cryptoCreator = new CryptoCreator();
+        String decrypt = cryptoCreator.decryptMessage(eventMessageSend.getMessageContent(),eventMessageSend.getAlgoTpy().toString(),eventMessageSend.getKeyFilename());
         System.out.println("---------------Message receive: Participant "+name);
         System.out.println("Message Content:"+eventMessageSend.getMessageContent() );
         System.out.println("Algo Type:"+ eventMessageSend.getAlgoTpy().toString() );
+        System.out.println("Message encryptetd: "+eventMessageSend.getMessageContent());
+        System.out.println("Message decrypted: "+decrypt);
         if (eventMessageSend.getAlgoTpy()== AlgorithmsTyp.RSA){
 
             System.out.println("RSAPublicKey  n:"+eventMessageSend.getRsaPublicKey().getN().toString() );
             System.out.println("RSAPublicKey  e:"+eventMessageSend.getRsaPublicKey().getN().toString() );
         }
+
+        CompanyNetControlCenter.instance.getGui().writeTextAreaGui(name +" received new message");
+
+
 
     }
 }
