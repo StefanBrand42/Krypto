@@ -22,7 +22,7 @@ public class DecryptMessage extends ParserInstruction {
                 String algo = commandLineArray[4];
                 String key = commandLineArray[7];
 
-                gui.writeTextAreaGui(gui.getCryptoCreator().decryptMesagge(message,algo,key));
+                gui.writeTextAreaGui(gui.getCryptoCreator().decryptMessage(message,algo,key));
         }else{
             super.parse(commandLine,gui);
         }

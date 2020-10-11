@@ -2,6 +2,7 @@ package crypto;
 
 import configuration.Configuration;
 import gui.GUI;
+import instructionParser.parser.CrackEncryptedMessage;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -48,7 +49,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         return encryptedMessage;
     }
 
-    public String decryptMesagge(String message, String algo, String key)
+    public String decryptMessage(String message, String algo, String key)
     {
         /*if (!chooseAlgorithm(algo))
         {
@@ -89,7 +90,7 @@ public class CryptoCreator  implements  ICryptoCreator{
 
 
     public AlgorithmsTyp getAlgoTypFromName(String algoTyp){
-        String test =algoTyp.toUpperCase();
+        String test = algoTyp.toUpperCase();
         String test2 = AlgorithmsTyp.SHIFT.toString();
         if (algoTyp.toUpperCase().equals(AlgorithmsTyp.RSA.toString())){
             return AlgorithmsTyp.RSA;
@@ -141,7 +142,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         return "";
     }
 
-    private void createCrackerMethod(Algorithms algorithm) {
+    private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht ShiftCracker
         Object instance;
         URL[] urls = null;
         try {
@@ -151,12 +152,12 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
         try {
             URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
-            Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL);
+            Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL); // RSA Klassen-Namen müssen noch angepasst werden!
 
             instance = aClass.getMethod("getInstance").invoke(null);
             port = aClass.getDeclaredField("port").get(instance);
             //cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
-            switch (Configuration.instance.algorithms) {
+            switch (algorithm) {
                 case RSA:
                     cryptoVar = port.getClass().getMethod("DECRYPT", String.class, File.class); // RSA benötigt message und public key
                     break;
@@ -169,20 +170,20 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
     }
 
-    private String cracking (String message) {
+    public String cracking (String message, AlgorithmsTyp algoTyp) {
 
         String crackedString = "Error: cracking failed.";
         try {
-            switch (Configuration.instance.algorithms) {
+            switch (algoTyp) {
                 case RSA:
                     // Load component
-                    createCrackerMethod(Configuration.instance.algorithms);
+                    createCrackerMethod(algoTyp);
                     // Decrypt message
-                    crackedString = (String) getCryptoVar().invoke(getPort(), message, Configuration.instance.keyfileDirectory);
+                    crackedString = (String) getCryptoVar().invoke(getPort(), message, Configuration.instance.keyfileDirectory); // jede keyfile probieren bei RSA?
                     break;
                 case SHIFT:
                     // Load component
-                    createCrackerMethod(Configuration.instance.algorithms);
+                    createCrackerMethod(algoTyp);
                     // Decrypt message
                     crackedString = (String) getCryptoVar().invoke(getPort(), message);
                     break;
