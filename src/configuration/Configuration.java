@@ -1,6 +1,6 @@
 package configuration;
 
-import crypto.Algorithms;
+import crypto.AlgorithmsTyp;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +14,7 @@ public enum Configuration {
     // common
     public final String userDirectory = System.getProperty("user.dir");
     public final String fileSeparator = System.getProperty("file.separator");
-    public Algorithms algorithms = Algorithms.RSA;  // default Algorithm
+   // public AlgorithmsTyp algorithmsTyp = AlgorithmsTyp.RSA;  // default Algorithm
 
     // database
     public final String dataDirectory = userDirectory + fileSeparator + "hsqldb" + fileSeparator;
@@ -118,7 +118,7 @@ public enum Configuration {
 
 
 
-    public String getAlgorithmPath(Algorithms algorithm) {
+    public String getAlgorithmPath(AlgorithmsTyp algorithm) {
         String path = componentDirectory;
         switch (algorithm) {
             case SHIFT:
@@ -133,7 +133,7 @@ public enum Configuration {
         return path;
     }
 
-    public String getCrackerPath(Algorithms algorithm) {
+    public String getCrackerPath(AlgorithmsTyp algorithm) {
         String path = componentDirectory;
         switch (algorithm) {
             case SHIFT:

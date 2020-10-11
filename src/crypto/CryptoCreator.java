@@ -24,12 +24,16 @@ public class CryptoCreator  implements  ICryptoCreator{
     public String encryptMessage(String message, String algo, String key)
     {
 
-        if (!chooseAlgorithm(algo))
+        /*if (!chooseAlgorithm(algo))
         {
+            return null;
+        }*/
+
+        if (getAlgoTypFromName(algo)== null){
             return null;
         }
         //log("Creating encryption method at runtime from component");
-        createCryptoMethod("encrypt");
+        createCryptoMethod("encrypt", getAlgoTypFromName(algo));
 
         //log("Detected encryption algorithm '" + algo + "'");
         String encryptedMessage = cryption(message, new File(Configuration.instance.keyfileDirectory + key +".json"));
@@ -41,12 +45,15 @@ public class CryptoCreator  implements  ICryptoCreator{
 
     public String decryptMesagge(String message, String algo, String key)
     {
-        if (!chooseAlgorithm(algo))
+        /*if (!chooseAlgorithm(algo))
         {
+            return null;
+        }*/
+        if (getAlgoTypFromName(algo)== null){
             return null;
         }
         //log("Creating decryption method at runtime from component");
-        createCryptoMethod("decrypt");
+        createCryptoMethod("decrypt", getAlgoTypFromName(algo));
 
         //log("Detected decryption algorithm '" + algo + "'");
         String decryptedMessage = cryption(message, new File(Configuration.instance.keyfileDirectory + key +".json"));
@@ -58,36 +65,51 @@ public class CryptoCreator  implements  ICryptoCreator{
 
 
 // andern
-
+/*
     private boolean chooseAlgorithm(String algorithm)
     {
         switch (algorithm.toLowerCase()) {
             case "rsa":
-                Configuration.instance.algorithms = Algorithms.RSA;
+                Configuration.instance.algorithmsTyp = AlgorithmsTyp.RSA;
                 break;
             case "shift":
-                Configuration.instance.algorithms = Algorithms.SHIFT;
+                Configuration.instance.algorithmsTyp = AlgorithmsTyp.SHIFT;
                 break;
             default:
                 return false;
         }
         return true;
     }
+    */
+
+
+    public AlgorithmsTyp getAlgoTypFromName(String algoTyp){
+        String test =algoTyp.toUpperCase();
+        String test2 = AlgorithmsTyp.SHIFT.toString();
+        if (algoTyp.toUpperCase().equals(AlgorithmsTyp.RSA.toString())){
+            return AlgorithmsTyp.RSA;
+        }else if (algoTyp.toUpperCase().equals(AlgorithmsTyp.SHIFT.toString())){
+            return  AlgorithmsTyp.SHIFT;
+        }else {
+            return  null;
+        }
+    }
 
 
 
-    public void createCryptoMethod(String methodType) { // cryptoVar: decrypt or encrypt
+    public void createCryptoMethod(String methodType, AlgorithmsTyp algorithmsTyp) { // cryptoVar: decrypt or encrypt
         Object instance;
 
         try {
             // Stefan Pfad so erstellen wie IM LHC Detector damit nichtt gleich wie Loesung !!!!!!!!!!!!!
             // keine Methode gerAlgoPath
             // siehe Decetor LHC
-            URL[] urls = {new File(Configuration.instance.getAlgorithmPath(Configuration.instance.algorithms)).toURI().toURL()};
+            //URL[] urls = {new File(Configuration.instance.getAlgorithmPath(Configuration.instance.algorithmsTyp)).toURI().toURL()};
+            URL[] urls = {new File(Configuration.instance.getAlgorithmPath(algorithmsTyp)).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
             // Klasse namen umbebenen!!!!
-            Class aClass = Class.forName("CryptoEngine" + Configuration.instance.algorithms.toString(), true, urlClassLoader);
-
+           // Class aClass = Class.forName("CryptoEngine" + Configuration.instance.algorithmsTyp.toString(), true, urlClassLoader);
+            Class aClass = Class.forName("CryptoEngine" + algorithmsTyp.toString(), true, urlClassLoader);
             instance = aClass.getMethod("getInstance").invoke(null);
             port = aClass.getDeclaredField("port").get(instance);
             // Name Varibale aenderen
@@ -99,7 +121,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
     }
 
-    public void createCrackerMethod(Algorithms algorithm) {
+    public void createCrackerMethod(AlgorithmsTyp algorithm) {
         Object instance;
         URL[] urls = null;
         try {

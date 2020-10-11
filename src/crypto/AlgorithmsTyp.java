@@ -1,6 +1,6 @@
 package crypto;
 
-public enum Algorithms {
+public enum AlgorithmsTyp {
     SHIFT,
     RSA
 }

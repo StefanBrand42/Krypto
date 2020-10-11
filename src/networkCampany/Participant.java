@@ -1,6 +1,7 @@
 package networkCampany;
 
 import com.google.common.eventbus.Subscribe;
+import crypto.AlgorithmsTyp;
 
 public class Participant extends Subscriber implements IParticipant {
     private int id;
@@ -30,6 +31,13 @@ public class Participant extends Subscriber implements IParticipant {
     @Subscribe
     public void receive(EventMessageSend eventMessageSend){
         System.out.println("---------------Message receive: Participant "+name);
-        System.out.println("Message:"+eventMessageSend.getMessageContent() );
+        System.out.println("Message Content:"+eventMessageSend.getMessageContent() );
+        System.out.println("Algo Type:"+ eventMessageSend.getAlgoTpy().toString() );
+        if (eventMessageSend.getAlgoTpy()== AlgorithmsTyp.RSA){
+
+            System.out.println("RSAPublicKey  n:"+eventMessageSend.getRsaPublicKey().getN().toString() );
+            System.out.println("RSAPublicKey  e:"+eventMessageSend.getRsaPublicKey().getN().toString() );
+        }
+
     }
 }

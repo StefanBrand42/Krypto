@@ -64,6 +64,19 @@ public enum CompanyNetControlCenter {
         return  null;
     }
 
+    public IChannel getChannelByNamePartic01Part02(String nameParticipant01, String nameParticipant02){
+        for (IChannel channel: channelHashMap.values()) {
+            if (channel.getParticipant01().getName().equals(nameParticipant01) && channel.getParticipant02().getName().equals(nameParticipant02)){
+                return  channel;
+            }if (channel.getParticipant01().getName().equals(nameParticipant02) && channel.getParticipant02().getName().equals(nameParticipant01)){
+                return channel;
+            }
+        }
+
+        return null;
+
+    }
+
     public boolean delateChannel(String channelName){
         boolean exist= isChannelExist(channelName);
         if (exist){

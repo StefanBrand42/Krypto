@@ -50,7 +50,7 @@ public enum HSQLTableMessages {
         StringBuilder sqlStringBuilder04 = new StringBuilder();
         sqlStringBuilder04.append("ALTER TABLE messages ADD CONSTRAINT fkAlgorithm_id ");
         sqlStringBuilder04.append("FOREIGN KEY (algorithm_id) ");
-        sqlStringBuilder04.append("REFERENCES algorithms (id) ");
+        sqlStringBuilder04.append("REFERENCES algorithmsTyp (id) ");
         sqlStringBuilder04.append("ON DELETE CASCADE");
         System.out.println("sqlStringBuilder : " + sqlStringBuilder04.toString());
         HSQLDB.instance.update(sqlStringBuilder04.toString());

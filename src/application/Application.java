@@ -1,6 +1,8 @@
 package application;
 
 import configuration.Configuration;
+import crypto.AlgorithmsTyp;
+import crypto.CryptoCreator;
 import gui.GUI;
 
 
@@ -9,6 +11,7 @@ import org.hsqldb.lib.HsqlArrayHeap;
 import persistence.*;
 
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,13 +90,21 @@ public class Application {
         IParticipant test = new Participant(1,"testParti1", ParticipantTyp.normal);
         IParticipant test2 = new Participant(1,"testParti2", ParticipantTyp.normal);
         IChannel testCh = new Channel("Hallo",test,test2);
-        testCh.send("KryptoTest",test2);
+        testCh.send("KryptoTest", AlgorithmsTyp.SHIFT,test2);
+        RSAPublicKey rsaPublicKey = new RSAPublicKey(new BigInteger("12233"),new BigInteger("9887"));
+        testCh.send("asdjaksd",AlgorithmsTyp.RSA,rsaPublicKey,test);
 
         // test
         List<String> testKeyFilens = Configuration.instance.getAlgoTypsFromFileNames();
         boolean asd = Configuration.instance.checkIfAlgoExist("rSA");
         boolean asd22 = Configuration.instance.checkIfKeyFileNameExist("rsa_key1");
 
+        // test
+        CryptoCreator cryptoCreatorTest = new CryptoCreator();
+        AlgorithmsTyp algorithmsTyp = cryptoCreatorTest.getAlgoTypFromName("sHiFt");
+        AlgorithmsTyp algorithmsTyp2 = cryptoCreatorTest.getAlgoTypFromName("rsa");
+        AlgorithmsTyp algorithmsTyp3 = cryptoCreatorTest.getAlgoTypFromName("Rsa");
+        AlgorithmsTyp algorithmsTyp4 = cryptoCreatorTest.getAlgoTypFromName("Rsaafsaf");
 
 
 
