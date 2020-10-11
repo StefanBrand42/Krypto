@@ -1,10 +1,13 @@
 package networkCampany;
 
+import crypto.AlgorithmsTyp;
+
 public interface IChannel {
     String getName();
     IParticipant getParticipant01();
     IParticipant getParticipant02();
-    boolean send(String messageContent,IParticipant targetParticipant);
+    boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, RSAPublicKey rsaPublicKey, IParticipant targetParticipant);
+    boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant);
 
 
 }

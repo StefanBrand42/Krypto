@@ -75,10 +75,10 @@ public class EncryptMessage extends ParserInstruction {
     {
         switch (algorithm.toLowerCase()) {
             case "rsa":
-                Configuration.instance.algorithms = Algorithms.RSA;
+                Configuration.instance.algorithmsTyp = AlgorithmsTyp.RSA;
                 break;
             case "shift":
-                Configuration.instance.algorithms = Algorithms.SHIFT;
+                Configuration.instance.algorithmsTyp = AlgorithmsTyp.SHIFT;
                 break;
             default:
                 return false;

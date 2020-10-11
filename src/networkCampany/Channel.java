@@ -1,6 +1,7 @@
 package networkCampany;
 
 import com.google.common.eventbus.EventBus;
+import crypto.AlgorithmsTyp;
 
 public class Channel implements  IChannel {
     private String name;
@@ -40,20 +41,34 @@ public class Channel implements  IChannel {
     }
 
 
-    public boolean send(String messageContent,IParticipant targetParticipant)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant)
     {
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey));
             return  true;
         }else{
             return  false;
         }
 
+    }
 
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant)
+    {
+
+        if (targetParticipant.getName().equals(participant01.getName())){
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp));
+            return true;
+        }else if(targetParticipant.getName().equals(participant02.getName())){
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp));
+            return  true;
+        }else{
+            return  false;
+        }
 
     }
 }
+
