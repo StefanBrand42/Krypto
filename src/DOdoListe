@@ -45,3 +45,5 @@ encrypt message "test" using shift and keyfile shift_key
 decrypt message "yjxy" using shift and keyfile shift_key
 
 send message "test" from branch_hkg to branch_wuh using shift and keyfile shift_key
+
+crack encrypted message "yjxy" using shift

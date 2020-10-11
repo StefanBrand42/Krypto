@@ -53,7 +53,10 @@ public class ShiftCracker {
         StringBuilder results = new StringBuilder();
         for (int shift = 1; shift <= 25; shift++) {
             String crackedResult = smartShift(shift, unicode, unicodeCopy);
-            results.append(crackedResult);
+            if (!crackedResult.equals("")){
+                results.append(crackedResult+"\n");
+            }
+
         }
         return results.toString();
     }

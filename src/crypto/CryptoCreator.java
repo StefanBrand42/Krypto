@@ -144,16 +144,20 @@ public class CryptoCreator  implements  ICryptoCreator{
 
     private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht ShiftCracker
         Object instance;
+        /*
         URL[] urls = null;
         try {
             urls = new URL[]{new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         try {
+            URL[] urls= {new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
             URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
-            Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL); // RSA Klassen-Namen müssen noch angepasst werden!
-
+            String test = "ShiftCracker";
+            //Class aClass = Class.forName(algorithm.toString() + "Cracker", true, urlCL); // RSA Klassen-Namen müssen noch angepasst werden!
+            Class aClass = Class.forName(test, true, urlCL);
             instance = aClass.getMethod("getInstance").invoke(null);
             port = aClass.getDeclaredField("port").get(instance);
             //cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
@@ -162,7 +166,8 @@ public class CryptoCreator  implements  ICryptoCreator{
                     cryptoVar = port.getClass().getMethod("DECRYPT", String.class, File.class); // RSA benötigt message und public key
                     break;
                 case SHIFT:
-                    cryptoVar = port.getClass().getMethod("DECRYPT", String.class); // SHIFT benötigt nur message
+                    //cryptoVar = port.getClass().getMethod("DECRYPT", String.class); // SHIFT benötigt nur message
+                    cryptoVar = port.getClass().getMethod("decrypt", String.class);
                     break;
             }
         } catch (Exception e) {
