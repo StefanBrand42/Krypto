@@ -14,7 +14,7 @@ create Channel -->Stefan --> done
 show Channel --> Stefan --> done
 drop Channel --> Stefan --> done
 intrude Channel --> Stefan --shift
-send Messsage --> Stefan --> in pre
+send Messsage --> Stefan --> done
 
 
 Componteten

@@ -3,6 +3,7 @@ package networkCampany;
 import com.google.common.eventbus.Subscribe;
 import crypto.AlgorithmsTyp;
 import crypto.CryptoCreator;
+import persistence.HSQLTablePostboxs;
 
 import java.awt.*;
 
@@ -47,6 +48,7 @@ public class Participant extends Subscriber implements IParticipant {
         }
 
         CompanyNetControlCenter.instance.getGui().writeTextAreaGui(name +" received new message");
+        HSQLTablePostboxs.instance.insertDataTablePostbox(name,eventMessageSend.getParticipantFrom().getId(),decrypt);
 
 
 

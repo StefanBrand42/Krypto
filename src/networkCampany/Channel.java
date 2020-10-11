@@ -41,14 +41,14 @@ public class Channel implements  IChannel {
     }
 
 
-    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName, IParticipant participantFrom)
     {
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom));
             return  true;
         }else{
             return  false;
@@ -56,14 +56,14 @@ public class Channel implements  IChannel {
 
     }
 
-    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant,String keyFileName)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant,String keyFileName, IParticipant participantFrom)
     {
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom));
             return  true;
         }else{
             return  false;

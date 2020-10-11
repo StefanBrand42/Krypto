@@ -1,5 +1,7 @@
 package persistence;
 
+import java.time.Instant;
+
 public enum HSQLTablePostboxs {
     instance;
 
@@ -37,7 +39,8 @@ public enum HSQLTablePostboxs {
 
     }
 
-    public void insertDataTablePostbox(String participant_name,int participant_from_id, String message, int timestamp) {
+    public void insertDataTablePostbox(String participant_name,int participant_from_id, String message) {
+        int timestamp = (int) Instant.now().getEpochSecond();
         int nextID = HSQLDB.instance.getNextID("postbox_"+participant_name) + 1;
         StringBuilder sqlStringBuilder = new StringBuilder();
         sqlStringBuilder.append("INSERT INTO postbox_").append(participant_name).append("(").append("id").append(",").append("participant_from_id").append(",").append("message").append(",").append("timestamp").append(")");

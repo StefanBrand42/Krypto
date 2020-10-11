@@ -7,20 +7,23 @@ public class EventMessageSend {
     private AlgorithmsTyp algoTpy;
     private RSAPublicKey rsaPublicKey = null;
     private String keyFilename;
+    private IParticipant participantFrom;
 
 
-    public EventMessageSend(String messageContent, AlgorithmsTyp algoTpy, RSAPublicKey rsaPublicKey, String keyFileName) {
+    public EventMessageSend(String messageContent, AlgorithmsTyp algoTpy, RSAPublicKey rsaPublicKey, String keyFileName, IParticipant participantFrom) {
         this.messageContent = messageContent;
         this.algoTpy = algoTpy;
         this.rsaPublicKey = rsaPublicKey;
         this.keyFilename = keyFileName;
+        this.participantFrom = participantFrom;
 
     }
 
-    public EventMessageSend(String messageContent, AlgorithmsTyp algoTpy, String keyFileName) {
+    public EventMessageSend(String messageContent, AlgorithmsTyp algoTpy, String keyFileName,IParticipant participantFrom) {
         this.messageContent = messageContent;
         this.algoTpy = algoTpy;
         this.keyFilename= keyFileName;
+        this.participantFrom = participantFrom;
     }
 
     public String getMessageContent() {
@@ -37,5 +40,9 @@ public class EventMessageSend {
 
     public String getKeyFilename() {
         return keyFilename;
+    }
+
+    public IParticipant getParticipantFrom() {
+        return participantFrom;
     }
 }

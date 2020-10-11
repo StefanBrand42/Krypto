@@ -58,7 +58,7 @@ public class SendMessage extends  ParserInstruction {
                     case RSA:
                        break;
                     case SHIFT:
-                        channel.send(encrpytMassage,algorithmsTyp,participantTarget,keyfileName);
+                        channel.send(encrpytMassage,algorithmsTyp,participantTarget,keyfileName,participantFrom);
                         HSQLTableMessages.instance.insertDataTableMessages(participantFrom.getId(),participantTarget.getId(),message,algo.toLowerCase(),encrpytMassage,keyfileName);
 
                         break;
