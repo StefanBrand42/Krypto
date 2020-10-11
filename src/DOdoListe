@@ -5,14 +5,15 @@ F3 Debug-Modus
 F8 Log-File
 F5 Execute -->Stefan --> done
 show Algo --> Wilhelm --> done
-encrpyt Mes -->Wilhelm --> in pre
-dercpt Mes --> Wilhelm
-crack encreptedMessag  -->
+encrpyt Mes -->Wilhelm --> done
+dercpt Mes --> Wilhelm --> done check Algo da
+crack encreptedMessag  --> Shift nehmen von Beispiel Mueller -- nicht Jones --> mehere ausgaben
+-->RSA muss gekärt werden -->RSA beide RSA Crack
 register Part --> Stefan --> done
 create Channel -->Stefan --> done
 show Channel --> Stefan --> done
 drop Channel --> Stefan --> done
-intrude Channel -->
+intrude Channel --> Stefan --shift
 send Messsage --> Stefan --> in pre
 
 
@@ -28,4 +29,13 @@ decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
 
 Stefan
 C:\Users\Stefan\Dropbox\00_Austausch\04_Semester\SoftwareEngineering\02_vorlesung\03_soa_komponenten\03_soa_komponenten_vorlesung\03_soa_komponenten\01_komponenten\02_implementierung\01_beispiele\01_beispiele
+
+
+Optional:
+Check Schlüssel zu Algo kombination
+
+// Ändern
+Componenten RSA En/De -->Beispiel 1 RSA --> Stefan
+Componenetn Shift End/DE --> Beispiel 1 Shift --> Stefan
+Crypto Creater Methode anpassen --> Optinal Wilhem
 

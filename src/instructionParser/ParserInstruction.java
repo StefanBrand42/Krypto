@@ -2,7 +2,7 @@ package instructionParser;
 
 import gui.GUI;
 
-public class ParserInstruction {
+public abstract class ParserInstruction {
     private ParserInstruction sucessor;
     public void parse (String commandLine, GUI gui){
         if (getSucessor()!= null){
