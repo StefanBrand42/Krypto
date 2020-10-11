@@ -1,15 +1,20 @@
 package instructionParser.parser;
 
 import configuration.Configuration;
+import crypto.AlgorithmsTyp;
 import gui.GUI;
 import instructionParser.ParserInstruction;
 import networkCampany.CompanyNetControlCenter;
 import networkCampany.IChannel;
+import networkCampany.IParticipant;
 
 public class SendMessage extends  ParserInstruction {
 
-    public SendMessage(ParserInstruction successor) {
-        this.setSuccessor(successor);
+
+
+    public SendMessage(ParserInstruction sucessor) {
+        this.setSuccessor(sucessor);
+
     }
 
     public void parse(String commandLine, GUI gui) {
@@ -41,9 +46,16 @@ public class SendMessage extends  ParserInstruction {
             {
                 IChannel channel = CompanyNetControlCenter.instance.getChannelByNamePartic01Part02(participant01,participant02);
                 String encrpytMassage = gui.getCryptoCreator().encryptMessage(message,algo,keyfileName);
+                IParticipant participantTarget = CompanyNetControlCenter.instance.getParticipantByName(participant02);
                 // Send Message via EventBus
-               // channel.send(encrpytMassage,)
-
+                AlgorithmsTyp algorithmsTyp = gui.getCryptoCreator().getAlgoTypFromName(algo);
+                switch (algorithmsTyp){
+                    case RSA:
+                       break;
+                    case SHIFT:
+                        channel.send(encrpytMassage,algorithmsTyp,participantTarget,keyfileName);
+                        break;
+                }
 
 
             }else {

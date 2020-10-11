@@ -86,14 +86,14 @@ public class Application {
 
         // GUI.getOutputArea().appendText("Huhuhhhh");
 
-        // Test Eventbus
+   /*     // Test Eventbus
         IParticipant test = new Participant(1,"testParti1", ParticipantTyp.normal);
         IParticipant test2 = new Participant(1,"testParti2", ParticipantTyp.normal);
         IChannel testCh = new Channel("Hallo",test,test2);
         testCh.send("KryptoTest", AlgorithmsTyp.SHIFT,test2);
         RSAPublicKey rsaPublicKey = new RSAPublicKey(new BigInteger("12233"),new BigInteger("9887"));
         testCh.send("asdjaksd",AlgorithmsTyp.RSA,rsaPublicKey,test);
-
+*/
         // test
         List<String> testKeyFilens = Configuration.instance.getAlgoTypsFromFileNames();
         boolean asd = Configuration.instance.checkIfAlgoExist("rSA");

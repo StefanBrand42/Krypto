@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import networkCampany.CompanyNetControlCenter;
 
 public class GUI extends Application {
 
@@ -26,6 +27,8 @@ public class GUI extends Application {
 
         IInstructionExecute iInstructionExecute = new InstructionExecute(this);
         cryptoCreator = new CryptoCreator();
+        //For Participant
+        CompanyNetControlCenter.instance.setGui(this);
 
 
 

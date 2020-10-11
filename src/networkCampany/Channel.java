@@ -41,14 +41,14 @@ public class Channel implements  IChannel {
     }
 
 
-    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName)
     {
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName));
             return  true;
         }else{
             return  false;
@@ -56,14 +56,14 @@ public class Channel implements  IChannel {
 
     }
 
-    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant,String keyFileName)
     {
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName));
             return  true;
         }else{
             return  false;
