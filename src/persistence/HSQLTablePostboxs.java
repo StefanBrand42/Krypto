@@ -30,7 +30,7 @@ public enum HSQLTablePostboxs {
         HSQLDB.instance.update(sqlStringBuilder01.toString());
 
         StringBuilder sqlStringBuilder02 = new StringBuilder();
-        sqlStringBuilder02.append("ALTER TABLE postbox_").append(participant_name).append(" ADD CONSTRAINT fkParticipant_from_id ");
+        sqlStringBuilder02.append("ALTER TABLE postbox_").append(participant_name).append(" ADD CONSTRAINT fkParticipant_from_id_"+participant_name+" ");
         sqlStringBuilder02.append("FOREIGN KEY (participant_from_id) ");
         sqlStringBuilder02.append("REFERENCES participants (id) ");
         sqlStringBuilder02.append("ON DELETE CASCADE");

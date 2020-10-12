@@ -63,7 +63,7 @@ public enum HSQLTableChannel {
         StringBuilder sqlStringBuilder = new StringBuilder();
         sqlStringBuilder.append("INSERT INTO channel (").append("name").append(",").append("participant_01").append(",").append("participant_02").append(")");
         sqlStringBuilder.append(" VALUES ");
-        sqlStringBuilder.append("(").append("'").append(name).append("'").append(",").append("'").append(participant_01).append("'").append(",").append("'").append(participant_02).append("'");
+        sqlStringBuilder.append("(").append("'").append(name).append("'").append(",").append(participant_01).append(",").append(participant_02);
         sqlStringBuilder.append(")");
         System.out.println("sqlStringBuilder : " + sqlStringBuilder.toString());
         HSQLDB.instance.update(sqlStringBuilder.toString());

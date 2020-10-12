@@ -44,6 +44,8 @@ decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
 encrypt message "test" using shift and keyfile shift_key
 decrypt message "yjxy" using shift and keyfile shift_key
 
+
 send message "test" from branch_hkg to branch_wuh using shift and keyfile shift_key
+send message "test" from branch_hkg to branch_wuh using rsa and keyfile rsa_key1
 
 crack encrypted message "yjxy" using shift
