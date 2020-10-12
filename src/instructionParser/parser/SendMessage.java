@@ -7,7 +7,14 @@ import instructionParser.ParserInstruction;
 import networkCampany.CompanyNetControlCenter;
 import networkCampany.IChannel;
 import networkCampany.IParticipant;
+import networkCampany.RSAPublicKey;
 import persistence.HSQLTableMessages;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.math.BigInteger;
+import java.security.PublicKey;
 
 public class SendMessage extends  ParserInstruction {
 
@@ -56,6 +63,12 @@ public class SendMessage extends  ParserInstruction {
                 AlgorithmsTyp algorithmsTyp = gui.getCryptoCreator().getAlgoTypFromName(algo);
                 switch (algorithmsTyp){
                     case RSA:
+                        File rsaFile = new File(Configuration.instance.keyfileDirectory + keyfileName +".json");
+                        RSAPublicKey rsaPublicKey = getPublicKeyRsa(rsaFile);
+                        channel.send(encrpytMassage,algorithmsTyp,rsaPublicKey,participantTarget,keyfileName,participantFrom);
+                        HSQLTableMessages.instance.insertDataTableMessages(participantFrom.getId(),participantTarget.getId(),message,algo.toLowerCase(),encrpytMassage,keyfileName);
+
+
                        break;
                     case SHIFT:
                         channel.send(encrpytMassage,algorithmsTyp,participantTarget,keyfileName,participantFrom);
@@ -76,5 +89,47 @@ public class SendMessage extends  ParserInstruction {
         }
 
 
+    }
+
+    private RSAPublicKey getPublicKeyRsa (File keyfile) {
+        try
+        {
+
+            BufferedReader reader = new BufferedReader(new FileReader(keyfile));
+            String currentLine;
+            String stringN = "", stringD = "", stringE = "";
+
+            while ((currentLine = reader.readLine()) != null) {
+                if (currentLine.charAt(0) != '{' && currentLine.charAt(0) != '}')
+                {
+                    String[] splitted = currentLine.split(":");
+                    if (splitted[1].charAt(splitted[1].length()-1) == ',') {
+                        splitted[1] = splitted[1].substring(0, splitted[1].length()-1);
+                    }
+
+
+                    if (splitted[0].contains("e"))
+                    {
+                        stringE = splitted[1].trim();
+                    }
+                    if (splitted[0].contains("n"))
+                    {
+                        stringN = splitted[1].trim();
+                    }
+                }
+            }
+
+            BigInteger e = new BigInteger(stringE);
+            BigInteger n = new BigInteger(stringN);
+
+            RSAPublicKey rsaPublicKey = new RSAPublicKey(n,e);
+            return  rsaPublicKey;
+
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
     }
 }

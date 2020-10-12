@@ -60,19 +60,23 @@ public class Application {
         HSQLTableParticipants.instance.insertDataTableParticipants("branch_wuh", 1);
         HSQLTableParticipants.instance.insertDataTableParticipants("msa", 2);
 
+
+
+
         ArrayList<String> paricipantNames2 = HSQLTableParticipants.instance.showParicipantNames();
         if (paricipantNames2 != null){
             for (String participantName: paricipantNames2) {
                 HSQLTablePostboxs.instance.createTablePostbox(participantName);
             }
         }
-
-
-
         HSQLTableChannel.instance.insertDataTableChannel("hkg_wuh", "branch_hkg", "branch_wuh");
         HSQLTableChannel.instance.insertDataTableChannel("hkg_cpt", "branch_hkg", "branch_cpt");
         HSQLTableChannel.instance.insertDataTableChannel("cpt_syd", "branch_cpt", "branch_syd");
         HSQLTableChannel.instance.insertDataTableChannel("syd_sfo", "branch_syd", "branch_sfo");
+
+
+
+
 
         //ArrayList<ShowChanelDataBase> showChanelDataBaseArrayList = HSQLDB.instance.showChannels();
         //boolean test12 = HSQLDB.instance.participantExist("branch_hkg");

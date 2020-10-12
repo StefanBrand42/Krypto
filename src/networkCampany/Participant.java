@@ -44,7 +44,7 @@ public class Participant extends Subscriber implements IParticipant {
         if (eventMessageSend.getAlgoTpy()== AlgorithmsTyp.RSA){
 
             System.out.println("RSAPublicKey  n:"+eventMessageSend.getRsaPublicKey().getN().toString() );
-            System.out.println("RSAPublicKey  e:"+eventMessageSend.getRsaPublicKey().getN().toString() );
+            System.out.println("RSAPublicKey  e:"+eventMessageSend.getRsaPublicKey().getE().toString() );
         }
 
         CompanyNetControlCenter.instance.getGui().writeTextAreaGui(name +" received new message");
