@@ -54,11 +54,11 @@ public class CreateChannel extends ParserInstruction {
                     boolean typNormalBooth = true;
                     // check if participant Type is normal
                     if (participant01.getParticipantTyp()!= ParticipantTyp.normal){
-                        writeGui.append("Participant: " +participant01.getName() +" ist not form Typ normal");
+                        writeGui.append("Participant: " +participant01.getName() +" is not form Typ normal");
                         typNormalBooth = false;
                     }
                     if (participant02.getParticipantTyp() != ParticipantTyp.normal){
-                        writeGui.append("Participant: " +participant02.getName() +" ist not form Typ normal");
+                        writeGui.append("Participant: " +participant02.getName() +" is not form Typ normal");
                         typNormalBooth = false;
                     }
                     if (typNormalBooth){

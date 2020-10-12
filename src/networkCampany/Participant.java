@@ -11,11 +11,17 @@ public class Participant extends Subscriber implements IParticipant {
     private int id;
     private String name;
     private ParticipantTyp participantTyp;
+    private IParticipantIntruderListener participantIntruder ;
 
     public Participant(int id, String name, ParticipantTyp participantTyp) {
         this.id = id;
         this.name = name;
         this.participantTyp = participantTyp;
+        if (participantTyp == ParticipantTyp.intruder){
+            participantIntruder = new ParticipantIntruder();
+        }else{
+            participantIntruder = null;
+        }
     }
 
     public int getId() {
@@ -30,6 +36,9 @@ public class Participant extends Subscriber implements IParticipant {
         return participantTyp;
     }
 
+    public IParticipantIntruderListener getParticipantIntruder() {
+        return participantIntruder;
+    }
 
     // Event Bud
     @Subscribe

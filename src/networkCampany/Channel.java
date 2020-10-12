@@ -3,12 +3,15 @@ package networkCampany;
 import com.google.common.eventbus.EventBus;
 import crypto.AlgorithmsTyp;
 
+import java.util.ArrayList;
+
 public class Channel implements  IChannel {
     private String name;
     private IParticipant participant01;
     private IParticipant participant02;
     private EventBus eventBusPart01;
     private EventBus eventBusPart02;
+    private ArrayList<IParticipantIntruderListener> listenersArrayList;
 
     public Channel(String name, IParticipant participant01, IParticipant participant02) {
         this.name = name;
@@ -21,8 +24,7 @@ public class Channel implements  IChannel {
 
         this.eventBusPart01.register(test);
         this.eventBusPart02.register(test2);
-
-
+        listenersArrayList = new ArrayList<>();
     }
 
 
@@ -69,6 +71,17 @@ public class Channel implements  IChannel {
             return  false;
         }
 
+    }
+
+    public void addListener(IParticipantIntruderListener listener){
+        listenersArrayList.add(listener);
+    }
+
+    public void sendMessagetoIntruder(EventMessageSend message){
+        for (IParticipantIntruderListener listener: listenersArrayList) {
+            listener.message(message);
+
+        }
     }
 }
 
