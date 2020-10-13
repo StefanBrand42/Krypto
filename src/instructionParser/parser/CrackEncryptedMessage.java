@@ -23,7 +23,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
     public void parse(String commandLine, GUI gui) {
         // Zum Testen: crack encrypted message "yjxy" using shift
         String[] commandLineArray = commandLine.split(" ");
-        if (commandLine.matches("crack encrypted message \"(.+)\" using (.+)") && commandLineArray.length == 6){
+        if (commandLine.matches("crack encrypted message \"(.+)\" using (.+)") && commandLineArray.length == 6){ // oder für RSA
             //gui.writeTextAreaGui("Instruction crack encrypted message");
             String message1 = commandLineArray[3]; // muss in "" sein
             String message = message1.replace("\"","");

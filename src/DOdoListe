@@ -8,7 +8,7 @@ show Algo --> Wilhelm --> done
 encrpyt Mes -->Wilhelm --> done
 dercpt Mes --> Wilhelm --> done check Algo da
 crack encreptedMessag  --> Shift done fehlt noch 30 Sekunden Timeout
--->RSA muss gekärt werden -->RSA beide RSA Crack
+-->RSA David und genaso anstiern,
 register Part --> Stefan --> done
 create Channel -->Stefan --> done
 show Channel --> Stefan --> done
@@ -46,8 +46,16 @@ Befehlsammlung
 
 encrypt message "test" using rsa and keyfile rsa_key1
 decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
-decrypt message "DQ==" using rsa and keyfile rsa_key1
 
+encrypt message "morpheus" using rsa and keyfile rsa_key1
+decrypt message "AKTmQUEs5g3s" using rsa and keyfile rsa_key1
+
+
+encrypt message "morpheus" using rsa and keyfile rsa_key4
+decrypt message "Px+S2g344XMt4/Dv" using rsa and keyfile rsa_key4
+
+encrypt message "morpheus" using rsa and keyfile rsa_key3
+decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
 
 encrypt message "test" using shift and keyfile shift_key
 decrypt message "yjxy" using shift and keyfile shift_key
@@ -58,6 +66,14 @@ send message "test" from branch_hkg to branch_wuh using rsa and keyfile rsa_key1
 
 crack encrypted message "yjxy" using shift
 
+Änderungen
+RSA KEY zweit Datein -->Public (n und e) und Private (n und d)
+Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
+RSA encrpt(decript Mueller Beispiel
+RSA encrpt(decript encrypt -->Filname Public  decrppit -->private   --->in der Komonente zwei Filereader mit Rückgabewert PublicKeyKlassse/Private -->noch erstellen
+-->Wilhem
+// parser Crack  -->oder
+ crack RSA mit Filename RSA Public / für Shift one Filname
 
 
 Stefan
