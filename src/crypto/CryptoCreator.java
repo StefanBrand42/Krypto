@@ -141,17 +141,10 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
         return "";
     }
-
+ /*
     private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht SHIFTCracker
         Object instance;
-        /*
-        URL[] urls = null;
-        try {
-            urls = new URL[]{new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         try {
             URL[] urls= {new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
             URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
@@ -175,6 +168,8 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
     }
 
+
+
     public String cracking (String message, AlgorithmsTyp algoTyp) {
 
         String crackedString = "Error: cracking failed.";
@@ -197,7 +192,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         catch (Exception e) { e.printStackTrace(); }
         return crackedString;
     }
-
+*/
     /*
     private String cracking (String message) {
         String crackedString = "Error: cracking failed.";

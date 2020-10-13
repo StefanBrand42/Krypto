@@ -5,6 +5,12 @@ import crypto.AlgorithmsTyp;
 import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
+import networkCampany.Cracker;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class CrackEncryptedMessage extends ParserInstruction {
 
@@ -34,7 +40,24 @@ public class CrackEncryptedMessage extends ParserInstruction {
 
             if (readyForCracking)
             {
-                gui.writeTextAreaGui(creator.cracking(message,algotyp));
+                //gui.writeTextAreaGui(creator.cracking(message,algotyp));
+
+
+                Future<String> future = new Cracker().cracking(message,algotyp);
+
+                try {
+                    String decrptMessage = future.get(30, TimeUnit.SECONDS);
+                    gui.writeTextAreaGui(decrptMessage);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (TimeoutException e) {
+                    gui.writeTextAreaGui("cracking encrypted \""+message+"\" failed");
+                    future.cancel(true);
+                }
+
+
             }else {
                 gui.writeTextAreaGui(stringBuilder01.toString());
             }
