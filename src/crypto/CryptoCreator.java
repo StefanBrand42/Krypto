@@ -35,10 +35,10 @@ public class CryptoCreator  implements  ICryptoCreator{
             return null;
         }
         //log("Creating decryption method at runtime from component");
-        Method cryptMethode= cryptoMethCreate("decrypt", getAlgoTypFromName(algo));
+        Method cryptMethode = cryptoMethCreate("decrypt", getAlgoTypFromName(algo));
 
         //log("Detected decryption algorithm '" + algo + "'");
-        String decryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"),cryptMethode);
+        String decryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode);
         if (decryptedMess != null) {
             //log("Successfully decrypted message '" + message + "' to '" + decryptedMessage + "'");
         }

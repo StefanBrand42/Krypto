@@ -7,6 +7,7 @@ import gui.GUI;
 import instructionParser.ParserInstruction;
 import networkCompany.Cracker;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -32,9 +33,11 @@ public class CrackEncryptedMessage extends ParserInstruction {
             String algo = commandLineArray[5];
             AlgorithmsTyp algotyp = creator.getAlgoTypFromName(algo);
             String publicKey = "noKey";
+            String publicKey1 = "noKey";
 
             if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
-                publicKey = commandLineArray[8];
+                publicKey1 = commandLineArray[8];
+                publicKey = Configuration.instance.keyfileDirectory + publicKey1 +".json";
             }
 
             if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
@@ -55,7 +58,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
                 //gui.writeTextAreaGui(creator.cracking(message,algotyp));
 
 
-                Future<String> future = new Cracker().cracking(message,algotyp, publicKey);
+                Future<String> future = new Cracker().cracking(algotyp, message, publicKey);
 
                 try {
                     String decryptMessage = future.get(30, TimeUnit.SECONDS);
