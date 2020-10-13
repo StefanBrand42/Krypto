@@ -68,12 +68,13 @@ crack encrypted message "yjxy" using shift
 
 Änderungen
 RSA KEY zweit Datein -->Public (n und e) und Private (n und d)
-Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
+
 RSA encrpt(decript Mueller Beispiel
 RSA encrpt(decript encrypt -->Filname Public  decrppit -->private   --->in der Komonente zwei Filereader mit Rückgabewert PublicKeyKlassse/Private -->noch erstellen
 -->Wilhem
 // parser Crack  -->oder
  crack RSA mit Filename RSA Public / für Shift one Filname
+ Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
 
 
 Stefan
