@@ -8,30 +8,26 @@ import java.util.Scanner;
 
 public class RSACracker {
     private static RSACracker instance = new RSACracker();
-
     private BigInteger e = BigInteger.ZERO;
     private BigInteger n = BigInteger.ZERO;
-    
     public Port port;
-
     private RSACracker() {
         port = new Port();
     }
-
     public static RSACracker getInstance() {
         return instance;
     }
 
     public class Port implements IRSACracker {
-        public String decrypt(String encryptedMessage, File publicKeyfile) throws FileNotFoundException {
-            return decryptMessage(encryptedMessage, publicKeyfile);
+        public String decrypt(String message, File publicKey) throws FileNotFoundException {
+            return decryptMessage(message, publicKey);
         }
     }
 
-    private String decryptMessage(String encryptedMessage, File publicKeyfile) throws FileNotFoundException {
-        readKeyFile(publicKeyfile);
+    private String decryptMessage(String message, File publicKey) throws FileNotFoundException {
+        readKeyFile(publicKey);
         
-        byte[] bytes = Base64.getDecoder().decode(encryptedMessage);
+        byte[] bytes = Base64.getDecoder().decode(message);
         
         try {
             BigInteger plain = execute(new BigInteger(bytes));
@@ -45,8 +41,8 @@ public class RSACracker {
         return null;
     }
 
-    private void readKeyFile(File keyfile) throws FileNotFoundException {
-        Scanner scanner = new Scanner(keyfile);
+    private void readKeyFile(File publicKey) throws FileNotFoundException {
+        Scanner scanner = new Scanner(publicKey);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.contains("\"n\":")) {
