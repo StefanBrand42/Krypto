@@ -35,7 +35,22 @@ Check Schlüssel zu Algo kombination
 // Ändern
 Componenten RSA En/De -->Beispiel 1 RSA --> Stefan
 Componenetn Shift End/DE --> Beispiel 1 Shift --> Stefan
-Crypto Creater Methode anpassen --> Optinal Wilhem
+Crypto Creater Methode anpassen --> Stefan done
+
+
+Änderungen
+RSA KEY zweit Datein -->Public (n und e) und Private (n und d)  -> done
+Shift abändern -->done
+RSA encrpt(decript Mueller Beispiel
+RSA encrpt(decript encrypt -->Filname Public  decrppit -->private   --->in der Komonente zwei Filereader mit Rückgabewert PublicKeyKlassse/Private -->noch erstellen
+-->Wilhem
+// parser Crack  -->oder
+ crack RSA mit Filename RSA Public / für Shift one Filname
+ Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
+
+
+
+
 
 Fehler DB (hat aber kein auswirkung)
 sqlStringBuilder : INSERT INTO channel (name,participant_01,participant_02) VALUES ('hkg_wuh',1,5)
@@ -43,6 +58,14 @@ user lacks privilege or object not found: ID
 
 
 Befehlsammlung
+
+encrypt message "morpheus" using shift and keyfile shift_key
+decrypt message "rtwumjzx" using shift and keyfile shift_key
+
+send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile shift_key
+
+
+
 
 encrypt message "test" using rsa and keyfile rsa_key1
 decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
@@ -66,15 +89,6 @@ send message "test" from branch_hkg to branch_wuh using rsa and keyfile rsa_key1
 
 crack encrypted message "yjxy" using shift
 
-Änderungen
-RSA KEY zweit Datein -->Public (n und e) und Private (n und d)
-
-RSA encrpt(decript Mueller Beispiel
-RSA encrpt(decript encrypt -->Filname Public  decrppit -->private   --->in der Komonente zwei Filereader mit Rückgabewert PublicKeyKlassse/Private -->noch erstellen
--->Wilhem
-// parser Crack  -->oder
- crack RSA mit Filename RSA Public / für Shift one Filname
- Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
 
 
 Stefan

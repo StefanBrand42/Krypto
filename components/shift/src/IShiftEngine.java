@@ -1,6 +1,6 @@
 import java.io.File;
 
-public interface ICryptoEngine {
+public interface IShiftEngine {
     String decrypt(String message, File keyFile);
     String encrypt(String message, File keyFile);
 }
