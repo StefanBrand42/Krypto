@@ -14,8 +14,8 @@ public class EncryptMessage extends ParserInstruction {
 
     public void parse(String commandLine, GUI gui) {
 
-        // Zum Testen:  encrypt message "test" using rsa and keyfile rsa_key1
-        //              encrypt message "test" using shift and keyfile shift_key
+        // Zum Testen:  encrypt message "morpheus" using rsa and keyfile rsa_key1
+        //              encrypt message "morpheus" using shift and keyfile shift_key
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("encrypt message \"(.+)\" using (.+) and keyfile (.+)") && commandLineArray.length == 8){
             //gui.writeTextAreaGui("Instruction encrypt message");

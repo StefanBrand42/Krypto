@@ -19,7 +19,7 @@ public class Cracker {
     private Object port;
     private Method cryptoVar;
 
-    public Future<String>  cracking (AlgorithmsTyp algoTyp, String message, String publicKey) {
+    public Future<String>  cracking (AlgorithmsTyp algoTyp, String message, File pubKey) {
         return executor.submit(() -> {
             String crackedString = "Error: cracking failed.";
             try {
@@ -27,8 +27,9 @@ public class Cracker {
                     case RSA:
                         // Load component
                         createCrackerMethod(algoTyp);
-                        // Decrypt message
-                        crackedString = (String) getCryptoVar().invoke(getPort(), message, publicKey); // publicKey wird benötigt
+                        // Decrypt message & generating File
+                        //File publicKey = new File(Configuration.instance.keyfileDirectory + pubKey);
+                        crackedString = (String) getCryptoVar().invoke(getPort(), message, pubKey); // publicKey wird benötigt
                         break;
                     case SHIFT:
                         // Load component
@@ -50,16 +51,9 @@ public class Cracker {
     }
 
 
-    private void createCrackerMethod(AlgorithmsTyp algorithm) { // Path Fehler? Findet aktuell noch nicht SHIFTCracker
+    private void createCrackerMethod(AlgorithmsTyp algorithm) {
         Object instance;
-        /*
-        URL[] urls = null;
-        try {
-            urls = new URL[]{new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         try {
             URL[] urls= {new File(Configuration.instance.getCrackerPath(algorithm)).toURI().toURL()};
             URLClassLoader urlCL = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
@@ -69,6 +63,7 @@ public class Cracker {
             instance = aClass.getMethod("getInstance").invoke(null);
             port = aClass.getDeclaredField("port").get(instance);
             //cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
+
             switch (algorithm) {
                 case RSA:
                     cryptoVar = port.getClass().getMethod("decrypt", String.class, File.class); // RSA benötigt message und public key

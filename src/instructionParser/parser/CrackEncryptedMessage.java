@@ -22,8 +22,8 @@ public class CrackEncryptedMessage extends ParserInstruction {
     CryptoCreator creator = new CryptoCreator();
 
     public void parse(String commandLine, GUI gui) {
-        // Zum Testen:  crack encrypted message "yjxy" using shift
-        //              crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
+        // Zum Testen morpheus: crack encrypted message "rtwumjzx" using shift
+        //                      crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("crack encrypted message \"(.+)\" using (.+)") && commandLineArray.length == 6 ||
                 commandLine.matches("crack encrypted message \"(.+)\" using (.+) and keyfile (.+)") && commandLineArray.length == 9){ // oder für RSA
@@ -32,12 +32,12 @@ public class CrackEncryptedMessage extends ParserInstruction {
             String message = message1.replace("\"","");
             String algo = commandLineArray[5];
             AlgorithmsTyp algotyp = creator.getAlgoTypFromName(algo);
-            String publicKey = "noKey";
+            File publicKeyFile = null;
             String publicKey1 = "noKey";
 
             if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
                 publicKey1 = commandLineArray[8];
-                publicKey = Configuration.instance.keyfileDirectory + publicKey1 +".json";
+                publicKeyFile = new File (Configuration.instance.keyfileDirectory + publicKey1 +".json");
             }
 
             if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
@@ -58,7 +58,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
                 //gui.writeTextAreaGui(creator.cracking(message,algotyp));
 
 
-                Future<String> future = new Cracker().cracking(algotyp, message, publicKey);
+                Future<String> future = new Cracker().cracking(algotyp, message, publicKeyFile);
 
                 try {
                     String decryptMessage = future.get(30, TimeUnit.SECONDS);

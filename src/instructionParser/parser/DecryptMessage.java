@@ -13,7 +13,7 @@ public class DecryptMessage extends ParserInstruction {
     public void parse(String commandLine, GUI gui) {
 
         // Zum Testen:  decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
-        //              decrypt message "yjxy" using shift and keyfile shift_key
+        //              decrypt message "rtwumjzx" using shift and keyfile shift_key
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("decrypt message \"(.+)\" using (.+) and keyfile (.+)") && commandLineArray.length == 8){
             //gui.writeTextAreaGui("Instruction decrypt message");
