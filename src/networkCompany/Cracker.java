@@ -19,7 +19,7 @@ public class Cracker {
     private Object port;
     private Method cryptoVar;
 
-    public Future<String>  cracking (String message, AlgorithmsTyp algoTyp, String publicKey) {
+    public Future<String>  cracking (AlgorithmsTyp algoTyp, String message, String publicKey) {
         return executor.submit(() -> {
             String crackedString = "Error: cracking failed.";
             try {
