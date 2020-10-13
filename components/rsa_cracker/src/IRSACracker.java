@@ -1,7 +1,6 @@
 import java.io.File;
-import java.math.BigInteger;
+import java.io.FileNotFoundException;
 
-public interface IRSACracker
-{
-    String decrypt(String message, File keyfile) throws InterruptedException;
+public interface IRSACracker {
+    String decrypt(String encryptedMessage, File publicKeyfile) throws FileNotFoundException;
 }

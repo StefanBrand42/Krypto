@@ -31,7 +31,11 @@ public class CrackEncryptedMessage extends ParserInstruction {
             String message = message1.replace("\"","");
             String algo = commandLineArray[5];
             AlgorithmsTyp algotyp = creator.getAlgoTypFromName(algo);
-            String publicKey = commandLineArray[8];
+            String publicKey = "noKey";
+
+            if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
+                publicKey = commandLineArray[8];
+            }
 
             if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
                 gui.writeTextAreaGui("PublicKey is missing. (RSA needs the PublicKey)");

@@ -12,9 +12,9 @@
 
     <target name="jar">
         <mkdir dir="jar"/>
-        <jar destfile="jar/RSACracker.jar" basedir="build">
+        <jar destfile="jar/rsa_cracker.jar" basedir="build">
             <manifest>
-                <attribute name="Main-Class" value="RSACracker"/>
+                <attribute name="Main-Class" value="rsa_cracker"/>
             </manifest>
         </jar>
     </target>
