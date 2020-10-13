@@ -2,8 +2,8 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.IChannel;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.IChannel;
 
 
 import java.util.Map;

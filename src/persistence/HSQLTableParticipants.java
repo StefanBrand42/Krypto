@@ -1,8 +1,8 @@
 package persistence;
 
-import networkCampany.IParticipant;
-import networkCampany.Participant;
-import networkCampany.ParticipantTyp;
+import networkCompany.IParticipant;
+import networkCompany.Participant;
+import networkCompany.ParticipantTyp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

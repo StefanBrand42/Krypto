@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 
 import gui.GUI;
 import persistence.HSQLTableChannel;

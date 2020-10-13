@@ -1,11 +1,8 @@
 package persistence;
 
 import configuration.Configuration;
-import networkCampany.Participant;
-import networkCampany.ParticipantTyp;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public enum HSQLDB {
     instance;

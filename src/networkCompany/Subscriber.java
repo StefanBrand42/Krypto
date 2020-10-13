@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 // for EventBis
 public abstract class Subscriber {
 }

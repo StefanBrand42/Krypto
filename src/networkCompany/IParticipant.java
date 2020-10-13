@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 
 public interface IParticipant {
     int getId();

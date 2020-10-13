@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 
 import com.google.common.eventbus.EventBus;
 import crypto.AlgorithmsTyp;

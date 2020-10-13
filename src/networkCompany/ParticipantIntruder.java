@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 
 public class ParticipantIntruder implements IParticipantIntruderListener {
     public void message(EventMessageSend message){

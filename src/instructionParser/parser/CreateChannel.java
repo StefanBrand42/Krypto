@@ -2,9 +2,9 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.IParticipant;
-import networkCampany.ParticipantTyp;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.IParticipant;
+import networkCompany.ParticipantTyp;
 import persistence.HSQLTableChannel;
 
 public class CreateChannel extends ParserInstruction {

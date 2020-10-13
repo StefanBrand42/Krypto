@@ -4,21 +4,21 @@ import java.io.FileReader;
 import java.math.BigInteger;
 import java.util.*;
 
-public class CrackerEngineRSA
+public class RSACracker
 {
     BigInteger e;
     BigInteger n;
 
-    private static CrackerEngineRSA instance = new CrackerEngineRSA();
+    private static RSACracker instance = new RSACracker();
 
     public Port port;
 
-    private CrackerEngineRSA()
+    private RSACracker()
     {
         port = new Port();
     }
 
-    public static CrackerEngineRSA getInstance()
+    public static RSACracker getInstance()
     {
         return instance;
     }
@@ -112,7 +112,7 @@ public class CrackerEngineRSA
         }
     }
 
-    public class Port implements ICrackerEngine
+    public class Port implements IRSACracker
     {
         public String decrypt(String message, File keyfile) throws InterruptedException
         {

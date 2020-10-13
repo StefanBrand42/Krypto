@@ -2,7 +2,7 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
+import networkCompany.CompanyNetControlCenter;
 import persistence.HSQLTableChannel;
 
 public class DropChannel extends ParserInstruction {

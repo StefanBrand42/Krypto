@@ -2,9 +2,9 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.IParticipant;
-import networkCampany.ParticipantTyp;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.IParticipant;
+import networkCompany.ParticipantTyp;
 
 public class IntrudeChannel extends  ParserInstruction {
     public IntrudeChannel(ParserInstruction successor) {

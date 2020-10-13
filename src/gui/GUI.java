@@ -16,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import networkCampany.CompanyNetControlCenter;
+import networkCompany.CompanyNetControlCenter;
 
 public class GUI extends Application {
 

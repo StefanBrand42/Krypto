@@ -1,9 +1,9 @@
 package persistence;
 
-import networkCampany.Channel;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.IChannel;
-import networkCampany.IParticipant;
+import networkCompany.Channel;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.IChannel;
+import networkCompany.IParticipant;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

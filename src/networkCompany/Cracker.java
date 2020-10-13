@@ -1,4 +1,4 @@
-package networkCampany;
+package networkCompany;
 
 
 import configuration.Configuration;
@@ -19,7 +19,7 @@ public class Cracker {
     private Object port;
     private Method cryptoVar;
 
-    public Future<String>  cracking (String message, AlgorithmsTyp algoTyp) {
+    public Future<String>  cracking (String message, AlgorithmsTyp algoTyp, String publicKey) {
         return executor.submit(() -> {
             String crackedString = "Error: cracking failed.";
             try {
@@ -28,13 +28,13 @@ public class Cracker {
                         // Load component
                         createCrackerMethod(algoTyp);
                         // Decrypt message
-                        crackedString = (String) getCryptoVar().invoke(getPort(), message, Configuration.instance.keyfileDirectory); // jede keyfile probieren bei RSA?
+                        crackedString = (String) getCryptoVar().invoke(getPort(), message, publicKey); // publicKey wird benötigt
                         break;
                     case SHIFT:
                         // Load component
                         createCrackerMethod(algoTyp);
                         // Decrypt message
-                        crackedString = (String) getCryptoVar().invoke(getPort(), message);
+                        crackedString = (String) getCryptoVar().invoke(getPort(), message); // publicKey wird nicht benötigt
                         // Test Timeout -----
                         //Thread.sleep(31000);
                         break;
@@ -71,7 +71,7 @@ public class Cracker {
             //cryptoVar = port.getClass().getMethod(CryptoVar.DECRYPT.toString().toLowerCase(), String.class, File.class);
             switch (algorithm) {
                 case RSA:
-                    cryptoVar = port.getClass().getMethod("DECRYPT", String.class, File.class); // RSA benötigt message und public key
+                    cryptoVar = port.getClass().getMethod("decrypt", String.class, File.class); // RSA benötigt message und public key
                     break;
                 case SHIFT:
                     //cryptoVar = port.getClass().getMethod("DECRYPT", String.class); // SHIFT benötigt nur message

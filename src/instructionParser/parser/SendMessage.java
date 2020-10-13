@@ -4,17 +4,16 @@ import configuration.Configuration;
 import crypto.AlgorithmsTyp;
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.IChannel;
-import networkCampany.IParticipant;
-import networkCampany.RSAPublicKey;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.IChannel;
+import networkCompany.IParticipant;
+import networkCompany.RSAPublicKey;
 import persistence.HSQLTableMessages;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.math.BigInteger;
-import java.security.PublicKey;
 
 public class SendMessage extends  ParserInstruction {
 

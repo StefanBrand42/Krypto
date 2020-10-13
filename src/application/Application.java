@@ -6,12 +6,10 @@ import crypto.CryptoCreator;
 import gui.GUI;
 
 
-import networkCampany.*;
-import org.hsqldb.lib.HsqlArrayHeap;
+import networkCompany.*;
 import persistence.*;
 
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 

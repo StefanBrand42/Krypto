@@ -2,8 +2,8 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCampany.CompanyNetControlCenter;
-import networkCampany.ParticipantTyp;
+import networkCompany.CompanyNetControlCenter;
+import networkCompany.ParticipantTyp;
 import persistence.HSQLTableParticipants;
 import persistence.HSQLTablePostboxs;
 

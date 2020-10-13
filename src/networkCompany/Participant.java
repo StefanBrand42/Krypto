@@ -1,11 +1,9 @@
-package networkCampany;
+package networkCompany;
 
 import com.google.common.eventbus.Subscribe;
 import crypto.AlgorithmsTyp;
 import crypto.CryptoCreator;
 import persistence.HSQLTablePostboxs;
-
-import java.awt.*;
 
 public class Participant extends Subscriber implements IParticipant {
     private int id;
