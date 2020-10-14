@@ -21,7 +21,7 @@ public class CryptoCreator  implements  ICryptoCreator{
          Method cryptMethode = cryptoMethCreate("encrypt", getAlgoTypFromName(algo));
 
         //log("Detected encryption algorithm '" + algo + "'");
-        String encryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"),cryptMethode);
+        String encryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode);
         if (encryptedMess != null) {
             //log("Successfully encrypted message '" + message + "' to '" + encryptedMessage + "'");
         }
@@ -65,9 +65,9 @@ public class CryptoCreator  implements  ICryptoCreator{
             URL[] urls = {new File(Configuration.instance.getAlgorithmPath(algorithmsTyp)).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, CryptoCreator.class.getClassLoader());
 
-            Class clazz = Class.forName(algorithmsTyp.toString()+"CryptoEngine", true, urlClassLoader);
-            instance = clazz.getMethod("getInstance").invoke(null);
-            port = clazz.getDeclaredField("port").get(instance);
+            Class classComponent = Class.forName(algorithmsTyp.toString()+"CryptoEngine", true, urlClassLoader);
+            instance = classComponent.getMethod("getInstance").invoke(null);
+            port = classComponent.getDeclaredField("port").get(instance);
             return port.getClass().getMethod(methodType, String.class,File.class);
         }
         catch (Exception e) {

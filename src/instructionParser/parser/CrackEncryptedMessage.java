@@ -73,7 +73,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
                 Future<String> future = new Cracker().cracking(algotyp, message, rsaPublicKey);
 
                 try {
-                    String decryptMessage = future.get(1000, TimeUnit.SECONDS);
+                    String decryptMessage = future.get(1000, TimeUnit.SECONDS); // ZEIT nicht vergessen wieder zu ändern auf 30s
                     gui.writeTextAreaGui(decryptMessage);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
