@@ -29,18 +29,14 @@ public class Cracker {
                     case RSA:
                         // Load component
                         crackMethod = createCrackerMethod("decrypt", algoTyp);
-                        //createCrackerMethod(algoTyp);
-                        // Decrypt message
-                        //crackedString = (String) crackMethod.invoke(getPort(), message, pubKey); // publicKey wird benötigt
-                        crackedString = crack(message, pubKey, crackMethod);
+                        // Crack message
+                        crackedString = crack(message, pubKey, crackMethod); // publicKey wird benötigt
                         break;
                     case SHIFT:
                         // Load component
-                        //createCrackerMethod(algoTyp);
                         crackMethod = createCrackerMethod("decrypt", algoTyp);
-                        // Decrypt message
-                        //crackedString = (String) crackMethod.invoke(getPort(), message); // publicKey wird nicht benötigt
-                        crackedString = crack(message, shiftKey, crackMethod);
+                        // Crack message
+                        crackedString = crack(message, shiftKey, crackMethod); // publicKey wird nicht benötigt
                         break;
                 }
             }
@@ -63,11 +59,9 @@ public class Cracker {
 
             switch (algorithm) {
                 case RSA:
-                    //cryptoVar = port.getClass().getMethod("decrypt", String.class, RSAPublicKey.class);
                     return port.getClass().getMethod(methodType, String.class, RSAPublicKey.class);  // RSA benötigt message und public key
                 case SHIFT:
-                    //cryptoVar = port.getClass().getMethod("decrypt", String.class);
-                    return port.getClass().getMethod(methodType, String.class);
+                    return port.getClass().getMethod(methodType, String.class); // SHIFT benötigt nur message
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,16 +76,16 @@ public class Cracker {
     {
         try
         {
-            //log("Starting decryption");
+            //log("Starting cracking");
             if (publicKey != null) {
-                return (String) crackMethod.invoke(port, message, publicKey);
+                return (String) crackMethod.invoke(port, message, publicKey); // RSA
             }
-            return (String) crackMethod.invoke(port, message);
+            return (String) crackMethod.invoke(port, message); // SHIFT
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            //log("Error while decryption: " + e.getMessage());
+            //log("Error while cracking: " + e.getMessage());
         }
         return null;
     }
