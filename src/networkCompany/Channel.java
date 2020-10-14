@@ -45,12 +45,13 @@ public class Channel implements  IChannel {
 
     public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName, IParticipant participantFrom)
     {
+        sendMessagetoIntruder(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom,targetParticipant));
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom,targetParticipant));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom,targetParticipant));
             return  true;
         }else{
             return  false;
@@ -60,12 +61,13 @@ public class Channel implements  IChannel {
 
     public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant,String keyFileName, IParticipant participantFrom)
     {
+        sendMessagetoIntruder(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom,targetParticipant));
 
         if (targetParticipant.getName().equals(participant01.getName())){
-            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom));
+            eventBusPart01.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom,targetParticipant));
             return true;
         }else if(targetParticipant.getName().equals(participant02.getName())){
-            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom));
+            eventBusPart02.post(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom,targetParticipant));
             return  true;
         }else{
             return  false;

@@ -62,7 +62,6 @@ Befehlsammlung rsa_key3 nehmen
 encrypt message "morpheus" using shift and keyfile shift_key
 decrypt message "rtwumjzx" using shift and keyfile shift_key
 
-send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile shift_key
 
 encrypt message "morpheus" using rsa and keyfile rsa_key3
 decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
@@ -71,10 +70,11 @@ decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
 send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile shift_key
 send message "morpheus" from branch_hkg to branch_wuh using rsa and keyfile rsa_key3
 
+intrude channel hkg_wuh by msa
 
 
-
-
+crack encrypted message "rtwumjzx" using shift
+crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
 
 
 encrypt message "test" using rsa and keyfile rsa_key1

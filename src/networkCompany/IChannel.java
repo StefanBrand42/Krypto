@@ -8,6 +8,7 @@ public interface IChannel {
     IParticipant getParticipant02();
     boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName, IParticipant participantFrom);
     boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, IParticipant targetParticipant,String keyFileName, IParticipant participantFrom);
+    void addListener(IParticipantIntruderListener listener);
 
 
 }
