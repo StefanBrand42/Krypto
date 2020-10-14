@@ -1,0 +1,9 @@
+Check if algorithm shift exists.
+Algorithm shift exists.
+Creating Method of encryption dynamically out of component.
+Dynamically loading the corresponding keyfile.
+Keyfile:  C:\Stefan\06_Informatik_DHBW\05_Semester\Krypto\KryptoAufgabe\01selber\KryptoNeuNeuGit\keys\shift_key.json
+Start of encryption.
+Connecting the corresponding component dynamically via the port. 
+Connecting was successful.
+Encryption of message: morpheus to rtwumjzx was successful.

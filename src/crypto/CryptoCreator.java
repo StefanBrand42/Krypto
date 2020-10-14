@@ -95,7 +95,7 @@ public class CryptoCreator  implements  ICryptoCreator{
 
     private String crypto(String message, File key, Method cryptMethode, String enDeCrypt)
     {
-        log("Keyfile:  "+ Configuration.instance.keyfileDirectory + key +".json");
+        log("Keyfile:  "+ key);
         try
         {
             log("Start of "+enDeCrypt+".");
