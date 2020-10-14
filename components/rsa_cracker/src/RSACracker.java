@@ -1,10 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import networkCompany.RSAPublicKey;
+
+//import java.io.File;
+//import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class RSACracker {
     private static RSACracker instance = new RSACracker();
@@ -20,16 +22,17 @@ public class RSACracker {
     }
 
     public class Port implements IRSACracker {
-        public String decrypt(String message, File publicKey) throws FileNotFoundException {
+        public String decrypt(String message, RSAPublicKey publicKey)  {
             return decryptMessage(message, publicKey);
         }
     }
 
-    private String decryptMessage(String message, File publicKey) throws FileNotFoundException {
-        readKeyFile(publicKey);
-        
+    private String decryptMessage(String message, RSAPublicKey publicKey)  {
+        //readKeyFile(publicKey);
+        e = publicKey.getE();
+        n = publicKey.getN();
         byte[] bytes = Base64.getDecoder().decode(message);
-        
+
         try {
             BigInteger plain = execute(new BigInteger(bytes));
             if (plain == null)
@@ -41,7 +44,7 @@ public class RSACracker {
         }
         return null;
     }
-
+/*
     private void readKeyFile(File publicKey) throws FileNotFoundException {
         Scanner scanner = new Scanner(publicKey);
         while (scanner.hasNextLine()) {
@@ -60,7 +63,7 @@ public class RSACracker {
         String line = lineParts[1];
         line = line.replace(",", "").trim();
         return new BigInteger(line);
-    }
+    }*/
     
     private BigInteger execute(BigInteger cipher) throws RSACrackerException {
         BigInteger p, q, d;

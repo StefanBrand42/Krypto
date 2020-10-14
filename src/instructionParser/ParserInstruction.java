@@ -2,9 +2,11 @@ package instructionParser;
 
 import gui.GUI;
 
+import java.io.FileNotFoundException;
+
 public abstract class ParserInstruction {
     private ParserInstruction successor;
-    public void parse (String commandLine, GUI gui){
+    public void parse (String commandLine, GUI gui)  {
         if (getSuccessor()!= null){
             getSuccessor().parse(commandLine, gui);
         }else{

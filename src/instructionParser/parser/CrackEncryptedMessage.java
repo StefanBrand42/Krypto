@@ -6,8 +6,12 @@ import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
 import networkCompany.Cracker;
+import networkCompany.RSAPublicKey;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -34,10 +38,17 @@ public class CrackEncryptedMessage extends ParserInstruction {
             AlgorithmsTyp algotyp = creator.getAlgoTypFromName(algo);
             File publicKeyFile = null;
             String publicKey1 = "noKey";
+            RSAPublicKey rsaPublicKey= null;
 
             if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
                 publicKey1 = commandLineArray[8];
                 publicKeyFile = new File (Configuration.instance.keyfileDirectory + publicKey1 +".json");
+                try {
+                    rsaPublicKey = getPublicKeyFromFile(publicKeyFile);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
@@ -58,7 +69,8 @@ public class CrackEncryptedMessage extends ParserInstruction {
                 //gui.writeTextAreaGui(creator.cracking(message,algotyp));
 
 
-                Future<String> future = new Cracker().cracking(algotyp, message, publicKeyFile);
+                //Future<String> future = new Cracker().cracking(algotyp, message, publicKeyFile);
+                Future<String> future = new Cracker().cracking(algotyp, message, rsaPublicKey);
 
                 try {
                     String decryptMessage = future.get(1000, TimeUnit.SECONDS);
@@ -80,5 +92,30 @@ public class CrackEncryptedMessage extends ParserInstruction {
             super.parse(commandLine,gui);
         }
 
+    }
+
+
+    private RSAPublicKey getPublicKeyFromFile(File publicKey) throws FileNotFoundException {
+        BigInteger n = null;
+        BigInteger e = null;
+        Scanner scanner = new Scanner(publicKey);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.contains("\"n\":")) {
+                n = getParam(line);
+            }
+            else if (line.contains("\"e\":")) {
+                e = getParam(line);
+            }
+        }
+        RSAPublicKey rsaPublicKey = new RSAPublicKey(n,e);
+        return rsaPublicKey;
+    }
+
+    private BigInteger getParam(String input) {
+        String[] lineParts = input.split(":");
+        String line = lineParts[1];
+        line = line.replace(",", "").trim();
+        return new BigInteger(line);
     }
 }
