@@ -16,7 +16,7 @@ public class Participant extends Subscriber implements IParticipant {
         this.name = name;
         this.participantTyp = participantTyp;
         if (participantTyp == ParticipantTyp.intruder){
-            participantIntruder = new ParticipantIntruder();
+            participantIntruder = new ParticipantIntruder(this);
         }else{
             participantIntruder = null;
         }

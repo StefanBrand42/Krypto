@@ -40,6 +40,10 @@ public enum HSQLTablePostboxs {
     }
 
     public void insertDataTablePostbox(String participant_name,int participant_from_id, String message) {
+        insertDataTablePostboxAndGetId(participant_name,participant_from_id,message);
+    }
+
+    public int insertDataTablePostboxAndGetId(String participant_name,int participant_from_id, String message) {
         int timestamp = (int) Instant.now().getEpochSecond();
         int nextID = HSQLDB.instance.getNextID("postbox_"+participant_name) + 1;
         StringBuilder sqlStringBuilder = new StringBuilder();
@@ -47,6 +51,22 @@ public enum HSQLTablePostboxs {
         sqlStringBuilder.append(" VALUES ");
         sqlStringBuilder.append("(").append(nextID).append(",").append(participant_from_id).append(",").append("'").append(message).append("'").append(",").append(timestamp);
         sqlStringBuilder.append(")");
+        System.out.println("sqlStringBuilder : " + sqlStringBuilder.toString());
+        HSQLDB.instance.update(sqlStringBuilder.toString());
+        return nextID;
+    }
+
+
+
+    public void changeMessage(String participant_name,int id, String message) {
+
+        StringBuilder sqlStringBuilder = new StringBuilder();
+        sqlStringBuilder.append("UPDATE postbox_").append(participant_name);
+        sqlStringBuilder.append(" SET ").append("message = ").append("'").append(message).append("'");
+        sqlStringBuilder.append(" WHERE ").append("id = ").append(id);
+
+
+
         System.out.println("sqlStringBuilder : " + sqlStringBuilder.toString());
         HSQLDB.instance.update(sqlStringBuilder.toString());
     }

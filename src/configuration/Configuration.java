@@ -32,6 +32,9 @@ public enum Configuration {
     // logfiles
     public String logfileDirectory = userDirectory + fileSeparator + "logfiles";
 
+
+    public int TimeoutTimeSeconds =10000;
+
     public List<String> getAlgorithmFileNames() {
         List<String> filenames = new ArrayList<>();
         String path = componentDirectory;
