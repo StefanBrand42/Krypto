@@ -7,8 +7,7 @@ F5 Execute -->Stefan --> done
 show Algo --> Wilhelm --> done
 encrpyt Mes -->Wilhelm --> done
 dercpt Mes --> Wilhelm --> done check Algo da
-crack encreptedMessag  --> Shift done fehlt noch 30 Sekunden Timeout
--->RSA David und genaso anstiern,
+crack encreptedMessag  --> done
 register Part --> Stefan --> done
 create Channel -->Stefan --> done
 show Channel --> Stefan --> done
@@ -17,12 +16,6 @@ intrude Channel --> Stefan --shift
 send Messsage --> Stefan --> done
 
 
-KeyGenarort richtiger und Keys tauschen aktuele rsa Key 3 falsch
-
-
-Componteten
-genau gleich wie JonesGit??????? --> das fällt auch--> sollten da einigen aendern
-Encrpyt Loesung ist auch kopiert wurden????? -> genau gleiche Logik und Methoden
 
 
 
@@ -36,25 +29,6 @@ Check Schlüssel zu Algo kombination
 Componenten RSA En/De -->Beispiel 1 RSA --> Stefan
 Componenetn Shift End/DE --> Beispiel 1 Shift --> Stefan
 Crypto Creater Methode anpassen --> Stefan done
-
-
-Änderungen
-RSA KEY zweit Datein -->Public (n und e) und Private (n und d)  -> done
-Shift abändern -->done
-RSA encrpt(decript Mueller Beispiel -->done
-
--->Wilhem
-// parser Crack  -->oder
- crack RSA mit Filename RSA Public / für Shift one Filname
- Interface Componenten Cracker ändern beide Shift und RSA mit Filname (public) (shift == null)
-
-
-
-
-
-Fehler DB (hat aber kein auswirkung)
-sqlStringBuilder : INSERT INTO channel (name,participant_01,participant_02) VALUES ('hkg_wuh',1,5)
-user lacks privilege or object not found: ID
 
 
 Befehlsammlung rsa_key3 nehmen
@@ -71,6 +45,14 @@ send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile sh
 send message "morpheus" from branch_hkg to branch_wuh using rsa and keyfile rsa_key3
 
 intrude channel hkg_wuh by msa
+
+
+
+
+
+
+
+
 
 
 crack encrypted message "rtwumjzx" using shift

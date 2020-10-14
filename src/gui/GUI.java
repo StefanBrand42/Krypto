@@ -1,6 +1,7 @@
 package gui;
 
 
+import configuration.Configuration;
 import crypto.CryptoCreator;
 import crypto.ICryptoCreator;
 import instructionParser.IInstructionExecute;
@@ -16,13 +17,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import logging.GetLatestLog;
 import networkCompany.CompanyNetControlCenter;
 
 public class GUI extends Application {
 
     private TextArea outputArea;
     private ICryptoCreator cryptoCreator;
-    private Boolean debug = false;
+
 
     public void start(Stage primaryStage) {
 
@@ -60,6 +62,7 @@ public class GUI extends Application {
         outputArea.setEditable(false);
         //outputArea.appendText("testestt");
 
+        //------------------
 
 
 
@@ -104,8 +107,8 @@ public class GUI extends Application {
                     switch (keyEvent.getCode()){
                         case F3:
                             System.out.println("F3: Debug-Mode");
-                            debug = !debug;
-                            if (debug) {
+                            Configuration.instance.debug = !Configuration.instance.debug ;
+                            if (Configuration.instance.debug) {
                                 writeTextAreaGui("Debug-Mode on");
                             } else {
                                 writeTextAreaGui("Debug-Mode off");
@@ -119,6 +122,8 @@ public class GUI extends Application {
                         case F8:
                             // Aktuellstes LogFile ausdrucken
                             System.out.println("F8 wurde gedrueckt -->Logfile");
+                            writeTextAreaGui(GetLatestLog.instance.getLatestLog());
+
                             break;
 
 

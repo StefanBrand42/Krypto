@@ -4,13 +4,14 @@ import configuration.Configuration;
 import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
+import logging.Logging;
 
 public class EncryptMessage extends ParserInstruction {
 
     public EncryptMessage(ParserInstruction successor) {
         this.setSuccessor(successor);
     }
-    CryptoCreator creator = new CryptoCreator();
+
 
     public void parse(String commandLine, GUI gui) {
 
@@ -23,6 +24,9 @@ public class EncryptMessage extends ParserInstruction {
             String message = message1.replace("\"","");
             String algo = commandLineArray[4];
             String key = commandLineArray[7];
+
+
+
 
             // Check if Algo and KeyFile exist in Components
             boolean readyforEncrypt = true  ;
@@ -40,6 +44,10 @@ public class EncryptMessage extends ParserInstruction {
 
             if (readyforEncrypt)
             {
+                if (Configuration.instance.debug){
+                    gui.getCryptoCreator().setLogging(new Logging("encrypt",algo));
+                }
+
                 gui.writeTextAreaGui(gui.getCryptoCreator().encryptMessage(message,algo,key));
             }else {
                 gui.writeTextAreaGui(stringBuilder01.toString());

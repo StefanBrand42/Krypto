@@ -18,8 +18,9 @@ public class InstructionExecute implements  IInstructionExecute{
         ParserInstruction dropChan = new DropChannel(showChan);
         ParserInstruction instChan = new IntrudeChannel(dropChan);
         ParserInstruction sendMes = new SendMessage(instChan);
+        ParserInstruction help = new Help(sendMes);
 
-        startParser = sendMes;
+        startParser = help;
         this.gui = gui;
     }
 

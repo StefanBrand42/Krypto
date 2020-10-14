@@ -13,9 +13,9 @@ import java.nio.file.Paths;
 public class Logging implements ILogging {
     private String filePathName;
 
-    public Logging(String enDeCrypt, AlgorithmsTyp algo) {
+    public Logging(String enDeCrypt, String algo) {
         long unixSeconds = System.currentTimeMillis() / 1000L;
-        this.filePathName = Configuration.instance.logfileDirectory + enDeCrypt + "_" + algo.toString().toLowerCase() + "_" + unixSeconds + ".txt";
+        this.filePathName = Configuration.instance.logfileDirectory  + enDeCrypt + "_" + algo.toLowerCase() + "_" + unixSeconds + ".txt";
     }
 
     public void createWriteLog(String input) {

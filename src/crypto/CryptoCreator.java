@@ -2,6 +2,7 @@ package crypto;
 
 import configuration.Configuration;
 import gui.GUI;
+import logging.ILogging;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -12,36 +13,51 @@ public class CryptoCreator  implements  ICryptoCreator{
     private Object port;
     public GUI gui;
 
+    private ILogging logging = null;
+
     public String encryptMessage(String message, String algo, String key)
     {
+        log("Check if algorithm "+algo +" exists.");
         if (getAlgoTypFromName(algo)== null){
+            log("Algorithm "+algo +" does not exist.");
             return null;
+        }else {
+            log("Algorithm "+algo +" exists.");
         }
-        //log("Creating encryption method at runtime from component");
+
+        log("Creating Method of encryption dynamically out of component.");
          Method cryptMethode = cryptoMethCreate("encrypt", getAlgoTypFromName(algo));
 
-        //log("Detected encryption algorithm '" + algo + "'");
-        String encryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode);
+        log("Dynamically loading the corresponding keyfile.");
+        String encryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode, "encryption");
+        log("Connecting was successful.");
         if (encryptedMess != null) {
-            //log("Successfully encrypted message '" + message + "' to '" + encryptedMessage + "'");
+            log("Encryption of message: " + message + " to " + encryptedMess + " was successful.");
         }
+        logging= null;
         return encryptedMess;
     }
 
 
     public String decryptMessage(String message, String algo, String key)
     {
+        log("Check if algorithm "+algo +" exists.");
         if (getAlgoTypFromName(algo)== null){
+            log("Algorithm "+algo +" does not exist.");
             return null;
+        }else {
+            log("Algorithm "+algo +" exists.");
         }
-        //log("Creating decryption method at runtime from component");
+        log("Creating Method of decryption dynamically out of component.");
         Method cryptMethode = cryptoMethCreate("decrypt", getAlgoTypFromName(algo));
+        log("Dynamically loading the corresponding keyfile.");
 
-        //log("Detected decryption algorithm '" + algo + "'");
-        String decryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode);
+        String decryptedMess = crypto(message, new File(Configuration.instance.keyfileDirectory + key +".json"), cryptMethode, "decryption");
+        log("Connecting was successful.");
         if (decryptedMess != null) {
-            //log("Successfully decrypted message '" + message + "' to '" + decryptedMessage + "'");
+            log("Decryption of message: " + message + " to " + decryptedMess + " was successful.");
         }
+        logging= null;
         return decryptedMess;
     }
 
@@ -77,20 +93,32 @@ public class CryptoCreator  implements  ICryptoCreator{
         }
     }
 
-    private String crypto(String message, File key, Method cryptMethode)
+    private String crypto(String message, File key, Method cryptMethode, String enDeCrypt)
     {
+        log("Keyfile:  "+ Configuration.instance.keyfileDirectory + key +".json");
         try
         {
-            //log("Starting decryption");
+            log("Start of "+enDeCrypt+".");
+            log("Connecting the corresponding component dynamically via the port. ");
             return (String) cryptMethode.invoke(port, message, key);
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            //log("Error while decryption: " + e.getMessage());
+            log("Error while "+enDeCrypt+" : " + e.getMessage()+".");
         }
         return null;
     }
 
 
+    public void setLogging(ILogging logging) {
+        this.logging = logging;
+
+    }
+
+    private void log(String textLog) {
+        if (logging != null) {
+            logging.createWriteLog(textLog);
+        }
+    }
 }

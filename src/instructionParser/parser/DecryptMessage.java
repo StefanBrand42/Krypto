@@ -3,12 +3,13 @@ package instructionParser.parser;
 import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
+import logging.Logging;
 
 public class DecryptMessage extends ParserInstruction {
     public DecryptMessage(ParserInstruction successor) {
         this.setSuccessor(successor);
     }
-    CryptoCreator creator = new CryptoCreator();
+
 
     public void parse(String commandLine, GUI gui) {
 
@@ -22,6 +23,7 @@ public class DecryptMessage extends ParserInstruction {
                 String algo = commandLineArray[4];
                 String key = commandLineArray[7];
 
+                gui.getCryptoCreator().setLogging(new Logging("decrypt",algo));
                 gui.writeTextAreaGui(gui.getCryptoCreator().decryptMessage(message,algo,key));
         }else{
             super.parse(commandLine,gui);

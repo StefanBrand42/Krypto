@@ -14,7 +14,7 @@ public enum GetLatestLog {
     public String getLatestLog() {
         File[] logs = new File(Configuration.instance.logfileDirectory).listFiles();
 
-        if (logs != null) {
+        if (logs.length >0) {
             File lastLogfile = null;
 
             for (File log : logs) {

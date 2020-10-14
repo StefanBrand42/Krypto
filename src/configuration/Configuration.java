@@ -30,10 +30,12 @@ public enum Configuration {
     public String keyfileDirectory = userDirectory + fileSeparator + "keys" + fileSeparator;
 
     // logfiles
-    public String logfileDirectory = userDirectory + fileSeparator + "log";
+    public String logfileDirectory = userDirectory + fileSeparator + "log"+ fileSeparator;
 
+    public int TimeoutTimeSeconds = 30;
 
-    public int TimeoutTimeSeconds =10000;
+    public Boolean debug = false;
+
 
     public List<String> getAlgorithmFileNames() {
         List<String> filenames = new ArrayList<>();
