@@ -30,7 +30,7 @@ public enum Configuration {
     public String keyfileDirectory = userDirectory + fileSeparator + "keys" + fileSeparator;
 
     // logfiles
-    public String logfileDirectory = userDirectory + fileSeparator + "logfiles";
+    public String logfileDirectory = userDirectory + fileSeparator + "log";
 
 
     public int TimeoutTimeSeconds =10000;

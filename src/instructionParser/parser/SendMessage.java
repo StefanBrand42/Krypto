@@ -7,7 +7,7 @@ import instructionParser.ParserInstruction;
 import networkCompany.CompanyNetControlCenter;
 import networkCompany.IChannel;
 import networkCompany.IParticipant;
-import networkCompany.RSAPublicKey;
+import crypto.RSAPublicKey;
 import persistence.HSQLTableMessages;
 
 import java.io.BufferedReader;

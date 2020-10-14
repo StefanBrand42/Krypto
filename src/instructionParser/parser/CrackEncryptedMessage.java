@@ -5,8 +5,8 @@ import crypto.AlgorithmsTyp;
 import crypto.CryptoCreator;
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCompany.Cracker;
-import networkCompany.RSAPublicKey;
+import crypto.Cracker;
+import crypto.RSAPublicKey;
 
 import java.io.File;
 import java.io.FileNotFoundException;

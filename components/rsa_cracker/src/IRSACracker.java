@@ -1,4 +1,4 @@
-import networkCompany.RSAPublicKey;
+import crypto.RSAPublicKey;
 
 import java.io.File;
 import java.io.FileNotFoundException;

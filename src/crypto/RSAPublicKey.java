@@ -1,4 +1,4 @@
-package networkCompany;
+package crypto;
 
 import java.math.BigInteger;
 

@@ -2,6 +2,7 @@ package networkCompany;
 
 import com.google.common.eventbus.EventBus;
 import crypto.AlgorithmsTyp;
+import crypto.RSAPublicKey;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class Channel implements  IChannel {
     }
 
 
-    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp,RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName, IParticipant participantFrom)
+    public boolean send(String messageContent, AlgorithmsTyp algorithmsTyp, RSAPublicKey rsaPublicKey, IParticipant targetParticipant, String keyFileName, IParticipant participantFrom)
     {
 
         boolean x = false;

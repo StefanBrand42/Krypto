@@ -1,6 +1,7 @@
 package networkCompany;
 
 import crypto.AlgorithmsTyp;
+import crypto.RSAPublicKey;
 
 public class EventMessageSend {
     private String messageContent;

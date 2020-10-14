@@ -20,8 +20,9 @@ import networkCompany.CompanyNetControlCenter;
 
 public class GUI extends Application {
 
-    private  TextArea outputArea;
+    private TextArea outputArea;
     private ICryptoCreator cryptoCreator;
+    private Boolean debug = false;
 
     public void start(Stage primaryStage) {
 
@@ -102,7 +103,13 @@ public class GUI extends Application {
             public void handle(KeyEvent keyEvent) {
                     switch (keyEvent.getCode()){
                         case F3:
-                            System.out.println("F3 wurde gedrueckt --> Debug-Modus");
+                            System.out.println("F3: Debug-Mode");
+                            debug = !debug;
+                            if (debug) {
+                                writeTextAreaGui("Debug-Mode on");
+                            } else {
+                                writeTextAreaGui("Debug-Mode off");
+                            }
                             break;
                         case F5:
                             System.out.println("F5 wurde gedrueckt -->Execute");
@@ -110,6 +117,7 @@ public class GUI extends Application {
                             break;
 
                         case F8:
+                            // Aktuellstes LogFile ausdrucken
                             System.out.println("F8 wurde gedrueckt -->Logfile");
                             break;
 

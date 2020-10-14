@@ -2,6 +2,7 @@ package networkCompany;
 
 import configuration.Configuration;
 import crypto.AlgorithmsTyp;
+import crypto.Cracker;
 import persistence.HSQLTablePostboxs;
 
 import java.util.concurrent.ExecutionException;

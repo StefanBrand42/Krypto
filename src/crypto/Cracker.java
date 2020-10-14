@@ -1,10 +1,7 @@
-package networkCompany;
+package crypto;
 
 
 import configuration.Configuration;
-import crypto.AlgorithmsTyp;
-import crypto.CryptoCreator;
-import instructionParser.parser.DecryptMessage;
 
 import java.io.File;
 import java.lang.reflect.Method;
