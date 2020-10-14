@@ -2,9 +2,7 @@ package instructionParser.parser;
 
 import gui.GUI;
 import instructionParser.ParserInstruction;
-import networkCompany.CompanyNetControlCenter;
-import networkCompany.IParticipant;
-import networkCompany.ParticipantTyp;
+import networkCompany.*;
 
 public class IntrudeChannel extends  ParserInstruction {
     public IntrudeChannel(ParserInstruction successor) {
@@ -34,6 +32,10 @@ public class IntrudeChannel extends  ParserInstruction {
             }
             if (checkInputNames){
                 IParticipant participant = CompanyNetControlCenter.instance.getParticipantByName(participantIn);
+                IChannel channel = CompanyNetControlCenter.instance.getChannelByName(channelName);
+                IParticipantIntruderListener participantIntruderListener = participant.getParticipantIntruder();
+                // add listener
+                channel.addListener(participantIntruderListener);
 
             }else {
                 gui.writeTextAreaGui(stringBuilder01.toString());

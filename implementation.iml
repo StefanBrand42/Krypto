@@ -8,8 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/components/01_shift/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/components/rsa_cracker/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/components/shift/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/components/shift_cracker/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/components/rsa/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

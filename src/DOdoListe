@@ -41,8 +41,8 @@ Crypto Creater Methode anpassen --> Stefan done
 Änderungen
 RSA KEY zweit Datein -->Public (n und e) und Private (n und d)  -> done
 Shift abändern -->done
-RSA encrpt(decript Mueller Beispiel
-RSA encrpt(decript encrypt -->Filname Public  decrppit -->private   --->in der Komonente zwei Filereader mit Rückgabewert PublicKeyKlassse/Private -->noch erstellen
+RSA encrpt(decript Mueller Beispiel -->done
+
 -->Wilhem
 // parser Crack  -->oder
  crack RSA mit Filename RSA Public / für Shift one Filname
@@ -57,14 +57,24 @@ sqlStringBuilder : INSERT INTO channel (name,participant_01,participant_02) VALU
 user lacks privilege or object not found: ID
 
 
-Befehlsammlung
+Befehlsammlung rsa_key3 nehmen
 
 encrypt message "morpheus" using shift and keyfile shift_key
 decrypt message "rtwumjzx" using shift and keyfile shift_key
 
+
+encrypt message "morpheus" using rsa and keyfile rsa_key3
+decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
+
+
 send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile shift_key
+send message "morpheus" from branch_hkg to branch_wuh using rsa and keyfile rsa_key3
+
+intrude channel hkg_wuh by msa
 
 
+crack encrypted message "rtwumjzx" using shift
+crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
 
 
 encrypt message "test" using rsa and keyfile rsa_key1

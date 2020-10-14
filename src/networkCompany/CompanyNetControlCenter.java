@@ -82,6 +82,10 @@ public enum CompanyNetControlCenter {
 
     }
 
+    public  IChannel getChannelByName(String channelName){
+        return channelHashMap.get(channelName);
+    }
+
     public boolean delateChannel(String channelName){
         boolean exist= isChannelExist(channelName);
         if (exist){

@@ -131,8 +131,8 @@ public class GUI extends Application {
     }
 
     public void writeTextAreaGui(String text ){
-        outputArea.clear();
-        outputArea.appendText(text);
+       // outputArea.clear();
+        outputArea.appendText(text+"\n");
     }
 
     public ICryptoCreator getCryptoCreator() {

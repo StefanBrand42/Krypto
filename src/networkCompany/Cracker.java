@@ -19,7 +19,7 @@ public class Cracker {
     private Object port;
     private Method cryptoVar;
 
-    public Future<String>  cracking (AlgorithmsTyp algoTyp, String message, File pubKey) {
+    public Future<String>  cracking (AlgorithmsTyp algoTyp, String message, RSAPublicKey pubKey) {
         return executor.submit(() -> {
             String crackedString = "Error: cracking failed.";
             try {
@@ -63,7 +63,8 @@ public class Cracker {
 
             switch (algorithm) {
                 case RSA:
-                    cryptoVar = port.getClass().getMethod("decrypt", String.class, File.class); // RSA benötigt message und public key
+                    //cryptoVar = port.getClass().getMethod("decrypt", String.class, File.class); // RSA benötigt message und public key
+                    cryptoVar = port.getClass().getMethod("decrypt", String.class, RSAPublicKey.class);
                     break;
                 case SHIFT:
                     cryptoVar = port.getClass().getMethod("decrypt", String.class);

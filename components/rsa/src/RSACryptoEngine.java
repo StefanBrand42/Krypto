@@ -5,34 +5,35 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.Base64;
 
-public class CryptoEngineRSA
+public class RSACryptoEngine
 {
-    private static CryptoEngineRSA instance = new CryptoEngineRSA();
-    private BigInteger d, e, n;
+    private static RSACryptoEngine instance = new RSACryptoEngine();
+    private BigInteger d;
+    private BigInteger e;
+    private  BigInteger n;
 
     public Port port;
 
-    private CryptoEngineRSA()
+    private RSACryptoEngine()
     {
         port = new Port();
     }
 
-    public static CryptoEngineRSA getInstance()
+    public static RSACryptoEngine getInstance()
     {
         return instance;
     }
 
-    private String innerMethodDecrypt(byte[] message, File keyfile) {
+    private String decrypt(byte[] message, File keyfile) {
         readKeyfile(keyfile);
         byte[] msg = crypt(new BigInteger(message), d, n).toByteArray();
         return new String(msg);
     }
 
-    private byte[] innerMethodEncrypt(String plainMessage, File keyfile) {
+    private byte[] encrypt(String plainMessage, File keyfile) {
         readKeyfile(keyfile);
         byte[] bytes = plainMessage.getBytes(Charset.defaultCharset());
-        BigInteger bytesBigInteger = new BigInteger(bytes);
-        BigInteger cipher = crypt(bytesBigInteger, e, n);
+        BigInteger cipher = crypt(new BigInteger(bytes), e, n);
         return cipher.toByteArray();
     }
 
@@ -54,7 +55,6 @@ public class CryptoEngineRSA
                     if (splitted[1].charAt(splitted[1].length()-1) == ',') {
                         splitted[1] = splitted[1].substring(0, splitted[1].length()-1);
                     }
-
                     if (splitted[0].contains("d"))
                     {
                         stringD = splitted[1].trim();
@@ -69,7 +69,6 @@ public class CryptoEngineRSA
                     }
                 }
             }
-
             d = new BigInteger(stringD);
             e = new BigInteger(stringE);
             n = new BigInteger(stringN);
@@ -80,17 +79,17 @@ public class CryptoEngineRSA
         }
     }
 
-    public class Port implements ICryptoEngine
+    public class Port implements IRSACryptoEngine
     {
 
         public String decrypt(String message, File keyfile)
         {
-            return innerMethodDecrypt(Base64.getDecoder().decode(message), keyfile);
+            return RSACryptoEngine.this.decrypt(Base64.getDecoder().decode(message), keyfile);
         }
 
         public String encrypt(String message, File keyfile)
         {
-            return Base64.getEncoder().encodeToString(innerMethodEncrypt(message, keyfile));
+            return Base64.getEncoder().encodeToString(RSACryptoEngine.this.encrypt(message, keyfile));
         }
     }
 }
