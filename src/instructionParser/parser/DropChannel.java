@@ -14,7 +14,7 @@ public class DropChannel extends ParserInstruction {
     public void parse(String commandLine, GUI gui) {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("drop channel (.+)") && commandLineArray.length == 3){
-            gui.writeTextAreaGui("Instruction drop channel");
+            //gui.writeTextAreaGui("Instruction drop channel");
             String channelName = commandLineArray[2];
             Boolean succesDB = HSQLTableChannel.instance.dropOneChanel(channelName);
             Boolean succesComNet = CompanyNetControlCenter.instance.delateChannel(channelName);

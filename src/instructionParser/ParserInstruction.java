@@ -10,7 +10,7 @@ public abstract class ParserInstruction {
         if (getSuccessor()!= null){
             getSuccessor().parse(commandLine, gui);
         }else{
-            gui.writeTextAreaGui("unable to find the correct Instruction parser");
+            gui.writeTextAreaGui("Unable to find the correct Instruction parser");
         }
     }
 

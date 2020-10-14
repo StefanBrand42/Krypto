@@ -66,10 +66,6 @@ public class CrackEncryptedMessage extends ParserInstruction {
 
             if (readyForCracking)
             {
-                //gui.writeTextAreaGui(creator.cracking(message,algotyp));
-
-
-                //Future<String> future = new Cracker().cracking(algotyp, message, publicKeyFile);
                 Future<String> future = new Cracker().cracking(algotyp, message, rsaPublicKey);
 
                 try {

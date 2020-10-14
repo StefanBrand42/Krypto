@@ -15,7 +15,7 @@ public class CreateChannel extends ParserInstruction {
     public void parse(String commandLine, GUI gui) {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("create channel (.+) from (.+) to (.+)") && commandLineArray.length == 7){
-            gui.writeTextAreaGui("Instruction create channel");
+            //gui.writeTextAreaGui("Instruction create channel");
             String channelName =commandLineArray[2];
             String participant01Name = commandLineArray[4];
             String participant02Name = commandLineArray[6];

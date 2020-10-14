@@ -18,18 +18,8 @@ public class RegisterParticipant extends ParserInstruction {
         if (commandLine.matches("register participant (.+) with type (.+)") && commandLineArray.length == 6){
             String partTyp = commandLineArray[5];
             if (partTyp.equals("normal") || partTyp.equals("intruder")){
-                gui.writeTextAreaGui("Instruction register participant");
+                //gui.writeTextAreaGui("Instruction register participant");
                 String particName = commandLineArray[2];
-                /* DB
-                if (HSQLDB.instance.participantExist(particName)) {
-                    gui.writeTextAreaGui("participant " + particName + " already exists, using existing postbox_[" + particName + "]");
-                }else {
-                    HSQLDB.instance.insertDataTableParticipants(particName, ParticipantTyp.valueOf(partTyp));
-                    HSQLDB.instance.createTablePostbox(particName);
-                    gui.writeTextAreaGui("participant "+particName +" with type "+partTyp +" registered and postbox_["+particName+"] created");
-                }
-
-                */
 
                 //CompanyControlCenter
                 if (CompanyNetControlCenter.instance.isParticipantExist(particName)) {

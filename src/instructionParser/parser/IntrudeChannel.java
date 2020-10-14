@@ -12,7 +12,7 @@ public class IntrudeChannel extends  ParserInstruction {
     public void parse(String commandLine, GUI gui) {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("intrude channel (.+) by (.+)") && commandLineArray.length == 5){
-            gui.writeTextAreaGui("Instruction intrude channel");
+            //gui.writeTextAreaGui("Instruction intrude channel");
             String channelName = commandLineArray[2];
             String participantIn = commandLineArray[4];
             StringBuilder stringBuilder01 = new StringBuilder();

@@ -16,15 +16,8 @@ public class ShowChannel  extends ParserInstruction {
     public void parse(String commandLine, GUI gui) {
 
         if (commandLine.equals("show channel")){
-            gui.writeTextAreaGui("Instruction show channel");
-            // DB
-            /*ArrayList<ShowChanelDataBase>  showChanelDataBaseArrayList= HSQLTableChannel.instance.showChannels();
-            StringBuilder stringBuilder01 = new StringBuilder();
-            for (ShowChanelDataBase showChanelData: showChanelDataBaseArrayList) {
-               stringBuilder01.append(showChanelData.getNameChanel() +" | "+ showChanelData.getNameParticipant01()+" and "+showChanelData.getNameParticipant02()+"\n") ;
-            }
+            //gui.writeTextAreaGui("Instruction show channel");
 
-             */
             // CompanyNetControlCenter
             StringBuilder stringBuilder01 = new StringBuilder();
             Map<String, IChannel> channelMap = CompanyNetControlCenter.instance.getChannelHashMap();

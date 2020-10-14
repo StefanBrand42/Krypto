@@ -81,21 +81,7 @@ public enum HSQLTableChannel {
                 String name = resultSet.getString(1);
                 int participant01Id = resultSet.getInt(2);
                 int participant02Id = resultSet.getInt(3);
-                /*
-                String nameparticipant01 = null;
-                String nameparticipant02 = null;
 
-                Statement statement2 = HSQLDB.instance.getConnection().createStatement();
-                ResultSet resultSet2 = statement2.executeQuery("SELECT name FROM participants WHERE id = "+participant01);
-                while (resultSet2.next()){
-                    nameparticipant01= resultSet2.getString(1);
-                }
-                Statement statement3 = HSQLDB.instance.getConnection().createStatement();
-                ResultSet resultSet3 = statement3.executeQuery("SELECT name FROM participants WHERE id = "+participant02);
-                while (resultSet3.next()){
-                    nameparticipant02= resultSet3.getString(1);
-                }
-                */
                 IParticipant participant01 = CompanyNetControlCenter.instance.getParticipantById(participant01Id);
                 IParticipant participant02 = CompanyNetControlCenter.instance.getParticipantById(participant02Id);
                 IChannel channel = new Channel(name,participant01,participant02);

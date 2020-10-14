@@ -60,9 +60,9 @@ public class GUI extends Application {
         outputArea = new TextArea();
         outputArea.setWrapText(true);
         outputArea.setEditable(false);
-        //outputArea.appendText("testestt");
 
-        //------------------
+        // Introduction into available commands
+        writeTextAreaGui("For a short introduction and a detailed list of available commands, please enter: ?");
 
 
 
@@ -71,17 +71,6 @@ public class GUI extends Application {
 
                 System.out.println("--- execute ---");
                 iInstructionExecute.instructionExecute(commandLineArea.getText().trim());
-                /*
-                ParserInstruction showAlgo = new ShowAlgo();
-                showAlgo.parse(commandLineArea.getText());
-
-                System.out.println(commandLineArea.getText());
-                String[] test = commandLineArea.getText().split(" ");
-*/
-               /* if (commandLineArea.getText().matches("Test (.+) huhu") && test.length == 3){
-                    System.out.println("GehtSuper");
-                }
-*/
             }
         });
 

@@ -73,7 +73,6 @@ public class Cracker {
     {
         try
         {
-            //log("Starting cracking");
             if (publicKey != null) {
                 return (String) crackMethod.invoke(port, message, publicKey); // RSA
             }
@@ -82,7 +81,6 @@ public class Cracker {
         catch (Exception e)
         {
             e.printStackTrace();
-            //log("Error while cracking: " + e.getMessage());
         }
         return null;
     }

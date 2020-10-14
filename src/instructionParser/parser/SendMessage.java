@@ -27,7 +27,7 @@ public class SendMessage extends  ParserInstruction {
     public void parse(String commandLine, GUI gui) {
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("send message \"(.+)\" from (.+) to (.+) using (.+) and keyfile (.+)") && commandLineArray.length == 12){
-            gui.writeTextAreaGui("Instruction send message");
+            //gui.writeTextAreaGui("Instruction send message");
             String message_ = commandLineArray[2];
             String message = message_.replace("\"","");
             String participant01 = commandLineArray[4];

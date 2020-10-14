@@ -19,7 +19,6 @@ public class ShowAlgo extends ParserInstruction {
                 if (algo.endsWith("cracker")) continue;
                 if(!output.isBlank()) output += " | ";
                 output += algo;
-                //logger.log("found algo: "+algo);
             }
             gui.writeTextAreaGui(output);
 

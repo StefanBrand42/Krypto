@@ -18,9 +18,6 @@ public class Application {
         // hsqldb demo
         HSQLDB.instance.setupConnection();
 
-
-        // am besten Reigenfolgen ander herum loeschen wie erstellt, dann ken Problem mit dem Fremschlueesel verknuepfungen
-        // Fremdschlueesel sinnvoll wegen Datenintigritaet
         ArrayList<String> paricipantNames = HSQLTableParticipants.instance.showParicipantNames();
         if (paricipantNames != null){
             for (String participantName: paricipantNames) {
@@ -73,32 +70,12 @@ public class Application {
         HSQLTableChannel.instance.insertDataTableChannel("syd_sfo", "branch_syd", "branch_sfo");
 
 
-
-
-
-        //ArrayList<ShowChanelDataBase> showChanelDataBaseArrayList = HSQLDB.instance.showChannels();
-        //boolean test12 = HSQLDB.instance.participantExist("branch_hkg");
-        //boolean test13 = HSQLDB.instance.participantExist("fdgfdg");
-
         CompanyNetControlCenter.instance.startInitMapsFromDB();
 
 
         //Start der Gui
         javafx.application.Application.launch(GUI.class, args);
 
-        //javafx.stage.Screen.getPrimary().getVisualBounds().
-
-
-        // GUI.getOutputArea().appendText("Huhuhhhh");
-
-   /*     // Test Eventbus
-        IParticipant test = new Participant(1,"testParti1", ParticipantTyp.normal);
-        IParticipant test2 = new Participant(1,"testParti2", ParticipantTyp.normal);
-        IChannel testCh = new Channel("Hallo",test,test2);
-        testCh.send("KryptoTest", AlgorithmsTyp.SHIFT,test2);
-        RSAPublicKey rsaPublicKey = new RSAPublicKey(new BigInteger("12233"),new BigInteger("9887"));
-        testCh.send("asdjaksd",AlgorithmsTyp.RSA,rsaPublicKey,test);
-*/
         // test
         List<String> testKeyFilens = Configuration.instance.getAlgoTypsFromFileNames();
         boolean asd = Configuration.instance.checkIfAlgoExist("rSA");
@@ -115,8 +92,6 @@ public class Application {
 
         HSQLDB.instance.shutdown();
         System.out.println("Testsdsd");
-
-        //GUI.getPrimaryStage();
 
 
 

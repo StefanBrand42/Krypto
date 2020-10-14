@@ -58,11 +58,7 @@ public class Channel implements  IChannel {
 
         sendMessagetoIntruder(new EventMessageSend(messageContent,algorithmsTyp,rsaPublicKey,keyFileName,participantFrom,targetParticipant));
 
-        if (x){
-            return  true;
-        }else{
-            return  false;
-        }
+        return x;
 
     }
 
@@ -81,11 +77,7 @@ public class Channel implements  IChannel {
 
         sendMessagetoIntruder(new EventMessageSend(messageContent,algorithmsTyp,keyFileName,participantFrom,targetParticipant));
 
-        if (x){
-            return  true;
-        }else{
-            return  false;
-        }
+        return x;
 
 
 

@@ -105,7 +105,7 @@ public class CryptoCreator  implements  ICryptoCreator{
         catch (Exception e)
         {
             e.printStackTrace();
-            log("Error while "+enDeCrypt+" : " + e.getMessage()+".");
+            log("Error while "+enDeCrypt+": " + e.getMessage()+".");
         }
         return null;
     }

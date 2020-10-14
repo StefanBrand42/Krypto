@@ -1,4 +1,4 @@
 package networkCompany;
-// for EventBis
+// for EventBus
 public abstract class Subscriber {
 }

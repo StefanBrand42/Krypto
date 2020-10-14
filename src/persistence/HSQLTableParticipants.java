@@ -169,11 +169,7 @@ public enum HSQLTableParticipants {
             ResultSet resultSet = statement.executeQuery(sqlStatement);
             resultSet.next();
             int total = resultSet.getInt(1);
-            if (total>0){
-                return true;
-            }else {
-                return false;
-            }
+            return total > 0;
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;

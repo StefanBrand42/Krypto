@@ -59,40 +59,4 @@ public class EncryptMessage extends ParserInstruction {
         }
 
     }
-
-    /*
-    public String encrypt(String message, String algo, String key)
-    {
-        if (!chooseAlgorithm(algo))
-        {
-            return null;
-        }
-        //log("Creating encryption method at runtime from component");
-        creator.createCryptoMethod("encrypt");
-
-        //log("Detected encryption algorithm '" + algo + "'");
-        String encryptedMessage = creator.cryption(message, new File(Configuration.instance.keyfileDirectory + key));
-        if (!encryptedMessage.equals("")) {
-            //log("Successfully encrypted message '" + message + "' to '" + encryptedMessage + "'");
-        }
-        return encryptedMessage;
-    }
-
-
-    private boolean chooseAlgorithm(String algorithm)
-    {
-        switch (algorithm.toLowerCase()) {
-            case "rsa":
-                Configuration.instance.algorithmsTyp = AlgorithmsTyp.RSA;
-                break;
-            case "shift":
-                Configuration.instance.algorithmsTyp = AlgorithmsTyp.SHIFT;
-                break;
-            default:
-                return false;
-        }
-        return true;
-    }
-    */
-
 }

@@ -66,7 +66,6 @@ public enum Configuration {
             if (!algo.endsWith("cracker")) {
                 listAlgoTyp.add(algo);
             }
-            //logger.log("found algo: "+algo);
         }
         return listAlgoTyp;
     }
