@@ -13,7 +13,7 @@ public class RSACracker {
     public Port port;
     private RSACracker() {
         port = new Port();
-        
+
     }
     public static RSACracker getInstance() {
         return instance;
