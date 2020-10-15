@@ -1,37 +1,11 @@
 
-DO does
-
-F3 Debug-Modus --> 
-F8 Log-File -->
-F5 Execute -->Stefan --> done
-show Algo --> Wilhelm --> done
-encrpyt Mes -->Wilhelm --> done
-dercpt Mes --> Wilhelm --> done check Algo da
-crack encreptedMessag  --> done
-register Part --> Stefan --> done
-create Channel -->Stefan --> done
-show Channel --> Stefan --> done
-drop Channel --> Stefan --> done
-intrude Channel --> Stefan --shift
-send Messsage --> Stefan --> done
 
 
 
 
+Befehlsammlung
 
-
-
-
-Optional:
-Check Schlüssel zu Algo kombination
-
-// Ändern
-Componenten RSA En/De -->Beispiel 1 RSA --> Stefan
-Componenetn Shift End/DE --> Beispiel 1 Shift --> Stefan
-Crypto Creater Methode anpassen --> Stefan done
-
-
-Befehlsammlung rsa_key3 nehmen
+show algorithm
 
 encrypt message "morpheus" using shift and keyfile shift_key
 decrypt message "rtwumjzx" using shift and keyfile shift_key
@@ -40,6 +14,34 @@ decrypt message "rtwumjzx" using shift and keyfile shift_key
 encrypt message "morpheus" using rsa and keyfile rsa_key1
 decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key1
 
+encrypt message "morpheus" using rsa and keyfile rsa_key2
+decrypt message "Px+S2g344XMt4/Dv" using rsa and keyfile rsa_key2
+
+
+crack encrypted message "Px+S2g344XMt4/Dv" using rsa and keyfile rsa_key2
+crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key1
+crack encrypted message "rtwumjzx" using shift
+
+register participant branch_hkg with type normal
+register participant testNo with type normal
+register participant testIn with type intruder
+
+-- test
+create channel hkg_wuh from branch_hkg to branch_wuh
+create channel testChannel from branch_hkg to branch_wuh
+create channel testChannel from branch_hkg to branch_hkg
+create channel testChannel from test to branch_hkg
+create channel testChannel from branch_hkg to test
+create channel testChannel from testIn to branch_hkg
+--Create Channel
+create channel testChannel from testNo to branch_hkg
+
+
+show channel
+
+
+drop channel test
+drop channel syd_sfo
 
 send message "morpheus" from branch_hkg to branch_wuh using shift and keyfile shift_key
 send message "morpheus" from branch_hkg to branch_wuh using rsa and keyfile rsa_key1
@@ -54,32 +56,6 @@ intrude channel hkg_wuh by msa
 
 
 
-
-crack encrypted message "rtwumjzx" using shift
-crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
-
-
-encrypt message "test" using rsa and keyfile rsa_key1
-decrypt message "SuvEVMVtNhg=" using rsa and keyfile rsa_key1
-
-encrypt message "morpheus" using rsa and keyfile rsa_key1
-decrypt message "AKTmQUEs5g3s" using rsa and keyfile rsa_key1
-
-
-encrypt message "morpheus" using rsa and keyfile rsa_key4
-decrypt message "Px+S2g344XMt4/Dv" using rsa and keyfile rsa_key4
-
-encrypt message "morpheus" using rsa and keyfile rsa_key3
-decrypt message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
-
-encrypt message "test" using shift and keyfile shift_key
-decrypt message "yjxy" using shift and keyfile shift_key
-
-
-send message "test" from branch_hkg to branch_wuh using shift and keyfile shift_key
-send message "test" from branch_hkg to branch_wuh using rsa and keyfile rsa_key1
-
-crack encrypted message "yjxy" using shift
 
 
 

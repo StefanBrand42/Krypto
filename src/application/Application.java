@@ -12,9 +12,10 @@ import persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// Von 3684504 und 5686413
 public class Application {
     public static void main(String... args) {
+        // Von 3684504 und 5686413
         // hsqldb demo
         HSQLDB.instance.setupConnection();
 
@@ -72,36 +73,10 @@ public class Application {
 
         CompanyNetControlCenter.instance.startInitMapsFromDB();
 
-
         //Start der Gui
         javafx.application.Application.launch(GUI.class, args);
 
-        // test
-        List<String> testKeyFilens = Configuration.instance.getAlgoTypsFromFileNames();
-        boolean asd = Configuration.instance.checkIfAlgoExist("rSA");
-        boolean asd22 = Configuration.instance.checkIfKeyFileNameExist("rsa_key1");
-
-        // test
-        CryptoCreator cryptoCreatorTest = new CryptoCreator();
-        AlgorithmsTyp algorithmsTyp = cryptoCreatorTest.getAlgoTypFromName("sHiFt");
-        AlgorithmsTyp algorithmsTyp2 = cryptoCreatorTest.getAlgoTypFromName("rsa");
-        AlgorithmsTyp algorithmsTyp3 = cryptoCreatorTest.getAlgoTypFromName("Rsa");
-        AlgorithmsTyp algorithmsTyp4 = cryptoCreatorTest.getAlgoTypFromName("Rsaafsaf");
-
-
-
         HSQLDB.instance.shutdown();
-        System.out.println("Testsdsd");
-
-
-
-
-
-
-
-
-
-
 
 
 

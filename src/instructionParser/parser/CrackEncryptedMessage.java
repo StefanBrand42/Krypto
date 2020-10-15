@@ -39,26 +39,36 @@ public class CrackEncryptedMessage extends ParserInstruction {
             File publicKeyFile = null;
             String publicKey1 = "noKey";
             RSAPublicKey rsaPublicKey= null;
+            boolean readyForCracking = true  ;
+            StringBuilder stringBuilder01 = new StringBuilder();
+            if (algotyp != null){
+                if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
+                    publicKey1 = commandLineArray[8];
+                    publicKeyFile = new File (Configuration.instance.keyfileDirectory + publicKey1 +".json");
+                    try {
+                        rsaPublicKey = getPublicKeyFromFile(publicKeyFile);
 
-            if(algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length == 9) {
-                publicKey1 = commandLineArray[8];
-                publicKeyFile = new File (Configuration.instance.keyfileDirectory + publicKey1 +".json");
-                try {
-                    rsaPublicKey = getPublicKeyFromFile(publicKeyFile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        stringBuilder01.append("Your chosen keyfile does not exist. (please write it without .json) \n");
+                        readyForCracking = false;
+                    }
+
+                }
+                if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
+                    stringBuilder01.append("PublicKey is missing. (RSA needs the PublicKey)");
+                    readyForCracking = false;
                 }
 
             }
 
-            if (algotyp.equals(AlgorithmsTyp.RSA) && commandLineArray.length < 9) {
-                gui.writeTextAreaGui("PublicKey is missing. (RSA needs the PublicKey)");
-                return;
-            }
+
+
+
 
             // Check if Algo exists in Components
-            boolean readyForCracking = true  ;
-            StringBuilder stringBuilder01 = new StringBuilder();
+
+
             if (!Configuration.instance.checkIfAlgoExist(algo)){
                 stringBuilder01.append("Your chosen algorithm does not exist. \n");
                 readyForCracking = false;

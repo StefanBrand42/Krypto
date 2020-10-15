@@ -36,6 +36,7 @@ public class IntrudeChannel extends  ParserInstruction {
                 IParticipantIntruderListener participantIntruderListener = participant.getParticipantIntruder();
                 // add listener
                 channel.addListener(participantIntruderListener);
+                gui.writeTextAreaGui("The participant is registrate to the channel \n");
 
             }else {
                 gui.writeTextAreaGui(stringBuilder01.toString());
