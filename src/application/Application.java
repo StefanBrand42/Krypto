@@ -12,10 +12,10 @@ import persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-// Von 3684504 und 5686413
+// Von Matrikelnummern 3684504 und 5686413
 public class Application {
     public static void main(String... args) {
-        // Von 3684504 und 5686413
+        // Von Matrikelnummern 3684504 und 5686413
         // hsqldb demo
         HSQLDB.instance.setupConnection();
 

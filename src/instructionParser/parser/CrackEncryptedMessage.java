@@ -27,7 +27,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
 
     public void parse(String commandLine, GUI gui) {
         // Zum Testen morpheus: crack encrypted message "rtwumjzx" using shift
-        //                      crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key3
+        //                      crack encrypted message "JbkPFt+y+j8=" using rsa and keyfile rsa_key2
         String[] commandLineArray = commandLine.split(" ");
         if (commandLine.matches("crack encrypted message \"(.+)\" using (.+)") && commandLineArray.length == 6 ||
                 commandLine.matches("crack encrypted message \"(.+)\" using (.+) and keyfile (.+)") && commandLineArray.length == 9){ // oder für RSA
@@ -86,7 +86,7 @@ public class CrackEncryptedMessage extends ParserInstruction {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (TimeoutException e) {
-                    gui.writeTextAreaGui("cracking encrypted \""+message+"\" failed");
+                    gui.writeTextAreaGui("cracking encrypted message \""+message+"\" failed");
                     future.cancel(true);
                 }
 
