@@ -30,7 +30,7 @@ public class Application {
         HSQLTableMessages.instance.dropTableMessages();
         HSQLTableChannel.instance.dropTableChannel();
         HSQLTableParticipants.instance.dropTableParticipants();
-        HSQLTableTypes.instance.dropTableTypes(); // zum schluss das loeschen wo ander Fremdschluessel verkuepfungen haben
+        HSQLTableTypes.instance.dropTableTypes();
         HSQLTableAlgo.instance.dropTableAlgoithms();
 
 
